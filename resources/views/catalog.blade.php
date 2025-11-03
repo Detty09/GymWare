@@ -5,7 +5,6 @@
 @section('content')
 
     <div class="max-w-6xl min-w-6xl mx-auto py-8">
-        <h1 class="text-3xl font-bold mb-6">Exercise Catalog</h1>
         <x-catalog.filtering-form
             action="/exercises"
             :bodyparts="$bodyparts"

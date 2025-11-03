@@ -9,12 +9,12 @@
 
 <x-navbar></x-navbar>
 
-<main class="flex-1 flex justify-center items-start">
+<main class="flex-1 flex justify-center items-start bg-[#141414]">
     @yield('content')
 </main>
 
-<footer class="flex justify-end mr-6">
-    <p class="text-white">&copy; {{ date('Y') }} My App</p>
+<footer class="flex w-full justify-start bg-[#141414]">
+    <p class="text-white ml-2 text-xs text-gray-400">&copy; {{ date('Y') }} GymWare App</p>
 </footer>
 </body>
 </html>
