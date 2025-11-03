@@ -21,7 +21,7 @@ class WorkoutService
     }
 
 
-    public function createWorkout(string $planId): int
+    public function createWorkout(int $planId): int
     {
         return $this->workoutRepository->create($planId);
     }
@@ -55,7 +55,7 @@ class WorkoutService
         ];
     }
 
-    public function getWorkoutWithDetailsByPlanId(string $planId): array
+    public function getWorkoutWithDetailsByPlanId(int $planId): array
     {
         $data = $this->workoutRepository->findByPlanId($planId);
 
@@ -122,5 +122,25 @@ class WorkoutService
             $details[$name] = $this->getFormattedDetails($data);
         }
         return $details;
+    }
+
+    public function validateInputs(array ...$arrays): bool
+    {
+        foreach ($arrays as $array) {
+            if (empty($array)) return false;
+
+            foreach ($array as $inputs) {
+
+                if (gettype($inputs) !== 'array') {
+                    if ($inputs < 0 || empty($inputs)) return false;
+                    continue;
+                }
+
+                foreach ($inputs as $input) {
+                    if ($input < 0) return false;
+                }
+            }
+        }
+        return true;
     }
 }

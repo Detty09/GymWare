@@ -51,7 +51,6 @@ class WorkoutPlanController extends Controller
     public function edit(int $planId): Factory|View
     {
         $plan = $this->service->getWorkoutPlanById($planId);
-
         $plan = $this->exerciseDBService->getExercisesForPlan($plan);
 
         return view('planner.edit', ['plan' => $plan]);
