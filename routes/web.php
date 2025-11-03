@@ -53,10 +53,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/workout/history', [WorkoutController::class, 'index']);
     Route::get('/workout/history/{id}', [WorkoutController::class, 'show'] );
-
-    //Exercise details
-//Route::get('/planner-planner/details/edit/{id}', [ExerciseDetailController::class, 'edit']);
-//Route::post('/planner-planner/details/{id}', [ExerciseDetailController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function (){

@@ -13,11 +13,6 @@ class ExerciseRepository
         return $exercise->id;
     }
 
-    public function getById(string $exerciseId): array
-    {
-        return Exercise::findOrFail($exerciseId)->toArray();
-    }
-
     public function delete($exerciseId): void
     {
         Exercise::destroy($exerciseId);

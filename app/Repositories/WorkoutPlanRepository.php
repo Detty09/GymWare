@@ -17,12 +17,12 @@ class WorkoutPlanRepository
 
     public function delete(WorkoutPlan $plan): void
     {
-        $plan->delete();
+        $plan->deleteOrFail();
     }
 
     public function getByPlanId(int $planId): array
     {
-        return WorkoutPlan::with('exercises')->where('id', $planId)->first()->toArray();
+        return WorkoutPlan::with('exercises')->where('id', $planId)->firstOrFail()->toArray();
     }
 
 
