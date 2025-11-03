@@ -79,7 +79,7 @@ class WorkoutController extends Controller
     {
         $workouts = $this->workoutService->getWorkoutWithDetailsByPlanId($id);
 
-        if (!$workouts || count($workouts['workouts']) < 3) {
+        if (!$workouts || count($workouts['workouts']) < 2) {
             $plan = $this->workoutPlanService->getWorkoutPlanById($id);
             return view('workout.progression', [
                 'plan' => $plan['name'],
