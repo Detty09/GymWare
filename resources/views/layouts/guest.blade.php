@@ -25,15 +25,21 @@
 </head>
 <body class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
 
+<video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover">
+    <source src="{{ asset('videos/login_background.mp4') }}" type="video/mp4">
+</video>
+
+<div class="absolute inset-0 bg-black/40"></div>
+
 <!-- Optional Logo or Navbar -->
-<div class="mb-6">
+<div class="relative z-10 mb-6">
     <a href="/">
         <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
     </a>
 </div>
 
 <!-- Main Content -->
-<div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+<div class="relative z-10 w-full sm:max-w-md px-6 py-4 bg-black/80 border border-gray-800 shadow-md overflow-hidden rounded-xl">
     @yield('content')
 </div>
 
