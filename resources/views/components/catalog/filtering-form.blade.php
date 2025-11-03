@@ -2,11 +2,11 @@
 
 <form method="GET" action="{{ $action }}" class="mb-8 flex gap-4 items-center">
     <div>
-        <label for="bodypart" class="block text-sm font medium text-gray-700 mb-1">Filter by Body Part:</label>
+        <label for="bodypart" class="block text-sm font medium text-gray-100 mb-1">Filter by Body Part:</label>
         <select
             name="bodypart"
             id="bodypart"
-            class="border border-gray-300 rounded-lg px-3 py-2"
+            class="border border-gray-700 rounded-lg px-3 py-2 text-white bg-white/10 hover:border-orange-600 transition ease-in-out duration-100"
             onChange="this.form.submit()"
         >
             <option value="">All</option>
@@ -20,11 +20,11 @@
         </select>
     </div>
     <div>
-        <label for="equipment" class="block text-sm font medium text-gray-700 mb-1">Filter by Equipment:</label>
+        <label for="equipment" class="block text-sm font medium text-gray-100 mb-1">Filter by Equipment:</label>
         <select
             name="equipment"
             id="equipment"
-            class="border border-gray-300 rounded-lg px-3 py-2"
+            class="border border-gray-700 rounded-lg px-3 py-2 text-white bg-white/10 hover:border-orange-600 transition ease-in-out duration-100"
             onChange="this.form.submit()"
         >
             <option value="">All</option>

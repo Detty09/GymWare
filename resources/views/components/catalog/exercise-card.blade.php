@@ -1,15 +1,15 @@
 @props(["exercise", "plan" => null])
 
-<div class="bg-white rounded-lg overflow-hidden flex border border-gray-200">
-    <div class="p-4 text-start">
-        <h2 class="text-lg font-bold mb-2 text-gray-900">{{ ucfirst($exercise['name']) }}</h2>
-        <p class="text-gray-600 mb-2 text-sm">
+<div class="bg-white/10 overflow-hidden flex justify-between h-full border border-gray-600 rounded-xl shadow-md hover:shadow-xl hover:border-orange-600 hover:scale-105 transition-transform ease-in-out duration-200">
+    <div class="p-3 text-start">
+        <h2 class="text-lg font-bold mb-2 text-orange-600">{{ ucfirst($exercise['name']) }}</h2>
+        <p class="text-gray-100 mb-2 text-sm">
             <strong>Body Parts:</strong> {{ implode(', ', $exercise['bodyParts'] ?? []) }}
         </p>
-        <p class="text-gray-600 mb-2 text-sm">
+        <p class="text-gray-100 mb-2 text-sm">
             <strong>Target Muscles:</strong> {{ implode(', ', $exercise['targetMuscles'] ?? []) }}
         </p>
-        <p class="text-gray-600 mb-2 text-sm">
+        <p class="text-gray-100 mb-2 text-sm">
             <strong>Equipment:</strong> {{ implode(', ', $exercise['equipments'] ?? []) }}
         </p>
 
@@ -35,7 +35,7 @@
         @endif
 
     </div>
-    <div class="p-2">
+    <div class="min-w-32 max-w-32 m-3 border border-gray-200 rounded-lg bg-white aspect-square overflow-hidden flex justify-center items-center">
         <img src="{{ $exercise['gifUrl'] }}" alt="{{ $exercise['name'] }}" class="w-full h-48 object-contain">
     </div>
 
