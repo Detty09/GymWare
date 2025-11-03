@@ -75,4 +75,21 @@ class WorkoutController extends Controller
         return view('workout.history', ['data' => $workouts]);
     }
 
+    public function progression(string $id)
+    {
+        $workouts = $this->workoutService->getWorkoutWithDetailsByPlanId($id);
+
+        if (!$workouts || count($workouts['workouts']) < 3) {
+            $plan = $this->workoutPlanService->getWorkoutPlanById($id);
+            return view('workout.progression', [
+                'plan' => $plan['name'],
+                'error' => 'You have to complete at least 2 of this workout to check progression!'
+            ]);
+        }
+
+        $chart = $this->workoutService->createWorkoutChart($workouts);
+
+        return view('workout.progression', ['plan' => $workouts['name'], 'chart' => $chart]);
+    }
+
 }
