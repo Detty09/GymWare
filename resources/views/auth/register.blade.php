@@ -42,8 +42,8 @@
         <div class="mt-4">
             <label class="inline-flex items-center">
                 <input type="checkbox" name="is_coach" id="is_coach" value="1"
-                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500">
-                <span class="ms-2 text-gray-700">Are you a coach?</span>
+                       class="rounded border-gray-300 text-orange-600 shadow-sm focus:ring-orange-500">
+                <span class="ms-2 text-white text-sm">Are you a coach?</span>
             </label>
         </div>
 
@@ -51,24 +51,24 @@
         <div id="coach_bio" class="mt-4 hidden">
             <x-input-label for="bio" :value="__('Coach Bio')" />
             <textarea name="bio" id="bio" rows="4"
-                      class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                      class="block mt-1 w-full border border-gray-700 rounded-md shadow-sm text-white text-sm"></textarea>
         </div>
 
         <!-- Subscription -->
         <div class="mt-4">
             <label class="inline-flex items-center">
                 <input type="checkbox" name="subscription" id="subscription" value="1"
-                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500">
-                <span class="ms-2 text-gray-700">Subscribe to premium membership</span>
+                       class="rounded border-gray-300 text-orange-600 shadow-sm focus:ring-orange-500">
+                <span class="ms-2 text-white text-sm">Subscribe to premium membership</span>
             </label>
         </div>
 
         <!-- Payment Section -->
         <div id="payment-section" class="mt-4 hidden">
-            <h3 class="font-semibold text-lg text-gray-800 mb-2">Payment Information</h3>
+            <h3 class="font-semibold text-lg text-white mb-2">Payment Information</h3>
 
             <!-- Card Number -->
-            <div class="mb-3">
+            <div class="mb-3 text-sm">
                 <x-input-label for="card_number" :value="__('Card Number')" />
                 <x-text-input id="card_number" name="card_number" type="text"
                               inputmode="numeric" maxlength="19"
@@ -77,7 +77,7 @@
             </div>
 
             <!-- Expiration -->
-            <div class="mb-3">
+            <div class="mb-3 text-sm">
                 <x-input-label for="expiry_date" :value="__('Expiration (MM/YY)')" />
                 <x-text-input id="expiry_date" name="expiry_date" type="text"
                               inputmode="numeric" maxlength="5"
@@ -92,7 +92,7 @@
             </div>
 
             <!-- CVV -->
-            <div class="mb-3 w-1/2">
+            <div class="mb-3 w-1/2 text-sm">
                 <x-input-label for="cvv" :value="__('CVV')" />
                 <x-text-input id="cvv" name="cvv" type="text"
                               inputmode="numeric"
@@ -103,7 +103,7 @@
 
         <!-- Buttons -->
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md
+            <a class="underline text-sm text-orange-600 hover:text-gray-200 rounded-md
                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                href="{{ route('login') }}">
                 {{ __('Already registered?') }}
