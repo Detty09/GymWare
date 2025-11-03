@@ -61,5 +61,31 @@
                 });
             });
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async (pos) => {
+                    const {latitude, longitude} = pos.coords;
+
+                    localStorage.setItem('user_lat', latitude);
+                    localStorage.setItem('user_lng', longitude);
+
+                    try {
+                        const radius = 1000;
+                        const res = await fetch(`/gymsdata?lat=${latitude}&lng=${longitude}&radius=${radius}`);
+                        const data = await res.json();
+
+                        if (data.elements) {
+                            localStorage.setItem('cached_gyms', JSON.stringify(data.elements));
+                        }
+                    } catch (err) {
+                        console.error('❌ Failed to preload gyms:', err);
+                    }
+                });
+            } else {
+                console.warn("Geolocation not supported in this browser.");
+            }
+        });
+
     </script>
 @endsection
