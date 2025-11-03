@@ -2,13 +2,16 @@
 
 namespace App\Services;
 
-use App\Models\WorkoutDetails;
 use App\Repositories\WorkoutDetailRepository;
 use App\Repositories\WorkoutPlanRepository;
 use App\Repositories\WorkoutRepository;
+use IcehouseVentures\LaravelChartjs\Builder;
+use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
+use Illuminate\Support\Carbon;
 
 class WorkoutService
 {
+    private float $CHART_MODIFIER = 1.4;
     protected WorkoutRepository $workoutRepository;
     protected WorkoutDetailRepository $workoutDetailRepository;
     protected WorkoutPlanRepository $workoutPlanRepository;
@@ -142,5 +145,118 @@ class WorkoutService
             }
         }
         return true;
+    }
+
+    public function createWorkoutChart(array $workouts): Builder
+    {
+        $exerciseMaxWeights = $this->getMaxWeights($workouts['workouts']);
+        $labels = $this->getLabels($workouts['workouts']);
+        $datasets = $this->getData($exerciseMaxWeights, $labels);
+        $yMax = $this->getYMax($exerciseMaxWeights) * $this->CHART_MODIFIER;
+        $options = $this->getOptions($yMax);
+
+        $chart = Chartjs::build()
+            ->name("WorkoutProgressionChart")
+            ->type("line")
+            ->size(["width" => 400, "height" => 200])
+            ->labels($labels)
+            ->datasets($datasets)
+            ->options($options);
+
+        return $chart;
+    }
+
+    private function getMaxWeights(array $workouts): array
+    {
+        $maxWeights = [];
+        foreach ($workouts as $date => $exercises) {
+            $formattedDate = Carbon::parse($date)->format('m-d-Y');
+            foreach ($exercises as $exerciseName => $sets) {
+                foreach ($sets as $set) {
+                    if (!isset($maxWeights[$exerciseName])) {
+                        $maxWeights[$exerciseName] = [];
+                    }
+                    if (!isset($maxWeights[$exerciseName][$formattedDate]) || $set['weight'] > $maxWeights[$exerciseName][$formattedDate]) {
+                        $maxWeights[$exerciseName][$formattedDate] = $set['weight'];
+                    }
+                }
+            }
+        }
+        return $maxWeights;
+    }
+
+    private function getData(array $exerciseMaxWeights, array $labels): array
+    {
+        $datasets = [];
+
+        foreach ($exerciseMaxWeights as $exerciseName => $dataByDate) {
+            $data = [];
+            foreach ($labels as $label) {
+                $data[] = $dataByDate[$label] ?? null;
+            }
+
+            $datasets[] = [
+                'label' => $exerciseName,
+                'data' => $data,
+                'fill' => false,
+                'backgroundColor' => 'rgba(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ',0.3)',
+                'borderColor' => 'rgba(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ',0.7)',
+            ];
+        }
+
+        return $datasets;
+    }
+
+    private function getLabels(mixed $workouts): array
+    {
+        $labels = [];
+        foreach (array_keys($workouts) as $date) {
+            $labels[] = Carbon::parse($date)->format('m-d-Y');
+        }
+        return $labels;
+    }
+
+    private function getOptions(int $yMax): array
+    {
+        return [
+            'scales' => [
+                'xAxes' => [[
+                    'scaleLabel' => [
+                        'display' => true,
+                        'labelString' => 'Workout Date'
+                    ]
+                ]],
+                'yAxes' => [[
+                    'ticks' => [
+                        'beginAtZero' => true,
+                        'max' => $yMax,
+                    ],
+                    'scaleLabel' => [
+                        'display' => true,
+                        'labelString' => 'Weight (kg)'
+                    ]
+                ]],
+            ],
+            'plugins' => [
+                'title' => [
+                    'display' => true,
+                    'text' => 'Max Weight per Exercise'
+                ]
+            ]
+        ];
+    }
+
+    private function getYMax(array $exerciseMaxWeights): int
+    {
+        $yMax = 0;
+
+        foreach ($exerciseMaxWeights as $exercises) {
+            foreach ($exercises as $date => $weight) {
+                if ($weight > $yMax) {
+                    $yMax = $weight;
+                }
+            }
+        }
+        return $yMax;
     }
 }
