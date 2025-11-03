@@ -39,7 +39,7 @@
 </div>
 
 <!-- Main Content -->
-<div class="relative z-10 w-full sm:max-w-md px-6 py-4 bg-black/80 border border-gray-800 shadow-md overflow-hidden rounded-xl">
+<div class="relative z-10 w-full sm:max-w-md px-6 py-4 bg-[#141414]/90 border border-gray-800 shadow-md overflow-hidden rounded-xl">
     @yield('content')
 </div>
 
