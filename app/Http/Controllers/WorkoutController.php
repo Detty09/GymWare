@@ -6,8 +6,10 @@ use App\Models\WorkoutPlan;
 use App\Services\ExerciseDBService;
 use App\Services\WorkoutPlanService;
 use App\Services\WorkoutService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 
 class WorkoutController extends Controller
 {
@@ -117,8 +119,25 @@ class WorkoutController extends Controller
 
     public function download(Request $request)
     {
-        $chartType = $request->query("chartType");
-        dd($chartType);
+        $base64 = $request->input('image');
+        $plan = $request->input('plan', 'Workout');
+
+        $imageData = str_replace('data:image/png;base64,', '', $base64);
+        $imageData = str_replace(' ', '+', $imageData);
+        $image = base64_decode($imageData);
+
+        $path = storage_path('app/public/chart.png');
+        file_put_contents($path, $image);
+
+        $pdf = Pdf::loadView('workout.chart-pdf', [
+            'imagePath' => $path,
+            'plan' => $plan,
+        ])->setPaper('a4', 'landscape');
+
+        return Response::make($pdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="chart.pdf"',
+        ]);
     }
 
 }

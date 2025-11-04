@@ -29,22 +29,15 @@
             </select>
         </form>
 
-        @if(isset($chartType))
-            <form method="GET" action="/workout/progression/download">
-                <input name="chartType" value="{{$chartType}}" hidden/>
-
-                <x-button type="submit"
-                          class="mt-6 justify-center bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900">
-                    Download Chart
-                </x-button>
-            </form>
-        @endif
-
         @if (isset($error))
             <h1 class="text-2xl mt-6 text-red-600">{{$error}}</h1>
         @endif
 
         @if (isset($chart))
+            <x-button type="button" id="download"
+                      class="mt-6 justify-center bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900">
+                Download Chart
+            </x-button>
             <div class="w-3/4 mt-20">
                 <h1 class="text-center text-3xl font-bold mb-6">Progression of {{$plan}}</h1>
                 <x-chartjs-component :chart="$chart"/>
@@ -59,4 +52,31 @@
             </x-button>
         </a>
     </div>
+
+    <script>
+        document.getElementById('download').addEventListener('click', async () => {
+            const canvas = document.querySelector('canvas');
+            const image = canvas.toDataURL('image/png');
+
+            const response = await fetch('/workout/progression/download', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({
+                    image: image,
+                    plan: '{{ $plan }}'
+                })
+            });
+
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `{{ Str::slug($plan) }}-chart-{{ date('d-m-Y') }}.pdf`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        });
+    </script>
 @endsection
