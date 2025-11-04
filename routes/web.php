@@ -67,8 +67,9 @@ Route::middleware('auth')->group(function (){
 });
 
 //Gym Locator
-Route::get('/gymmap', function () {
-    return view('gymmap');
+Route::middleware('auth')->group(function (){
+    Route::get('/gymmap', function () {return view('gymmap');});
+    Route::get('/gymsdata', [GymController::class, 'preload']);
 });
-Route::get('/gymsdata', [GymController::class, 'preload']);});
+
 

@@ -12,7 +12,8 @@
             position: fixed;
             top: 10px; left: 50%;
             transform: translateX(-50%);
-            background: white;
+            background: rgba(0,0,0,0.8);
+            color: white;
             padding: 10px 20px;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -21,7 +22,30 @@
             gap: 10px;
             align-items: center;
         }
-        select, button { padding:5px 10px; border-radius:6px; border:1px solid #ccc; cursor:pointer; }
+        .back {
+            display: inline-block;
+            background-color: orange;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back:hover {
+            background-color: #ea580c;
+            transform: translateY(-2px);
+        }
+
+        .back:active {
+            transform: translateY(0);
+        }
+        select, button { padding:5px 10px; background: orange; color:white; border-radius:6px; cursor:pointer;}
+         button:hover {
+            background-color:#ea580c;;
+            color: white;
+        }
         .label { background:white; border:1px solid #999; border-radius:6px; padding:2px 4px; font-size:12px; pointer-events:none; }
     </style>
 </head>
@@ -35,9 +59,9 @@
             <option value="5000">5 km</option>
         </select>
     </label>
-    <button id="searchBtn">🔄 Search Again</button>
+    <button id="searchBtn" >🔄 Search Again</button>
     <span id="status">Loading...</span>
-    <a href="{{ route('dashboard') }}" >Back</a>
+    <a href="{{ route('dashboard') }}" class="back">Back</a>
 
 </div>
 

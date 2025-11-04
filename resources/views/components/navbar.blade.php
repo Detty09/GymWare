@@ -7,7 +7,7 @@
                 <a href="{{ route('profile.edit') }}" class="px-4 py-2  text-gray-300 hover:text-orange-600 rounded-lg transition">Profile</a>
                 <a href="/workout-planner" class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-lg transition">Workout Planner</a>
                 <a href="/workout/history" class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-lg transition">Workout History</a>
-                <a href="/gymmap" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">Nearby
+                <a href="/gymmap" class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-lg transition">Nearby
                 Gyms</a>
             </div>
             <div>
