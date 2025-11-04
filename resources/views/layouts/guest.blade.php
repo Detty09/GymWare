@@ -25,11 +25,11 @@
 </head>
 <body class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
 
-<video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover">
+<video autoplay muted loop playsinline class="fixed top-0 left-0 w-full h-full object-cover">
     <source src="{{ asset('videos/login_background.mp4') }}" type="video/mp4">
 </video>
 
-<div class="absolute inset-0 bg-black/40"></div>
+<div class="fixed inset-0 bg-black/40"></div>
 
 <!-- Optional Logo or Navbar -->
 <div class="relative z-10 mb-6">
