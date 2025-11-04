@@ -45,7 +45,9 @@ class WorkoutController extends Controller
             return redirect('/workout/create/' . $planId)->with('error', 'You cannot set a negative value to weight or repetition!');
         }
 
-        $workoutId = $this->workoutService->createWorkout($planId);
+        $totalWeight = $this->workoutService->getTotalWeight($exerciseIds, $weight, $reps);
+
+        $workoutId = $this->workoutService->createWorkout($planId, $totalWeight);
         $this->workoutService->createWorkoutDetails([
             'workout_id' => $workoutId,
             'exercise-id' => $exerciseIds,
@@ -75,7 +77,7 @@ class WorkoutController extends Controller
         return view('workout.history', ['data' => $workouts]);
     }
 
-    public function progression(string $id)
+    public function progression(Request $request, string $id)
     {
         $workouts = $this->workoutService->getWorkoutWithDetailsByPlanId($id);
 
@@ -86,10 +88,26 @@ class WorkoutController extends Controller
                 'error' => 'You have to complete at least 2 of this workout to check progression!'
             ]);
         }
+        $chart = $request->query("chart") ?? 'max-lifts';
 
-        $chart = $this->workoutService->createWorkoutChart($workouts);
+        if ($chart === 'max-lifts') {
+            $chart = $this->workoutService->getMaxLiftsChart($workouts);
+        } else if ($chart === 'total-weight') {
+            $chart = $this->workoutService->getTotalWeightsChart($id);
+        } else {
+            $plan = $this->workoutPlanService->getWorkoutPlanById($id);
+            return view('workout.progression', [
+                'plan' => $plan['name'],
+                'id' => $id,
+                'error' => 'Something went wrong!'
+            ]);
+        }
 
-        return view('workout.progression', ['plan' => $workouts['name'], 'chart' => $chart]);
+        return view('workout.progression', [
+            'plan' => $workouts['name'],
+            'id' => $id,
+            'chart' => $chart
+        ]);
     }
 
 }
