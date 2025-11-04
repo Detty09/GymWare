@@ -89,12 +89,15 @@ class WorkoutController extends Controller
                 'error' => 'You have to complete at least 2 of this workout to check progression!'
             ]);
         }
+
         $chart = $request->query("chart") ?? 'max-lifts';
 
         if ($chart === 'max-lifts') {
             $chart = $this->workoutService->getMaxLiftsChart($workouts);
+            $chartType = 'max-lifts';
         } else if ($chart === 'total-weight') {
             $chart = $this->workoutService->getTotalWeightsChart($id);
+            $chartType = 'total-weight';
         } else {
             $plan = $this->workoutPlanService->getWorkoutPlanById($id);
             return view('workout.progression', [
@@ -107,8 +110,15 @@ class WorkoutController extends Controller
         return view('workout.progression', [
             'plan' => $workouts['name'],
             'id' => $id,
-            'chart' => $chart
+            'chart' => $chart,
+            'chartType' => $chartType
         ]);
+    }
+
+    public function download(Request $request)
+    {
+        $chartType = $request->query("chartType");
+        dd($chartType);
     }
 
 }

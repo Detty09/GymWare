@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/workout/history', [WorkoutController::class, 'index']);
     Route::get('/workout/history/{id}', [WorkoutController::class, 'show'] );
 
+    Route::get('/workout/progression/download', [WorkoutController::class, 'download'] );
     Route::get('/workout/progression/{id}', [WorkoutController::class, 'progression'] );
 });
 

@@ -6,7 +6,7 @@
     <div class="flex flex-col items-center w-full">
 
         <form method="GET" action="/workout/progression/{{$id}}"
-        class="mt-6">
+              class="mt-6">
             <label for="chart">Chart to show:</label>
             <select
                 name="chart"
@@ -28,6 +28,17 @@
                 </option>
             </select>
         </form>
+
+        @if(isset($chartType))
+            <form method="GET" action="/workout/progression/download">
+                <input name="chartType" value="{{$chartType}}" hidden/>
+
+                <x-button type="submit"
+                          class="mt-6 justify-center bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900">
+                    Download Chart
+                </x-button>
+            </form>
+        @endif
 
         @if (isset($error))
             <h1 class="text-2xl mt-6 text-red-600">{{$error}}</h1>
