@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GymController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExerciseDBController;
 use App\Http\Controllers\ExerciseController;
@@ -64,4 +65,11 @@ Route::middleware('auth')->group(function (){
     Route::get('/my-appointments', [AppointmentController::class, 'myAppointments'])->name('appointments.myAppointments');
     Route::patch('/appointments/{appointment}/cancel', [AppointmentController::class, 'cancel'])->name('appointments.cancel');
 });
+
+//Gym Locator
+Route::middleware('auth')->group(function (){
+    Route::get('/gymmap', function () {return view('gymmap');});
+    Route::get('/gymsdata', [GymController::class, 'preload']);
+});
+
 
