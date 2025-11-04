@@ -1,6 +1,6 @@
 @extends("layouts.plan")
 
-@section("title", "Exercise details"))
+@section("title", "Exercise details")
 
 @section("content")
     <div class="max-w-6xl mx-auto py-8">
