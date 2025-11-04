@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 
 class WorkoutService
 {
-    private float $CHART_MODIFIER = 1.4;
+    private float $CHART_MODIFIER = 1.1;
     protected WorkoutRepository $workoutRepository;
     protected WorkoutDetailRepository $workoutDetailRepository;
     protected WorkoutPlanRepository $workoutPlanRepository;
@@ -154,7 +154,6 @@ class WorkoutService
         $datasets = $this->getData($exerciseMaxWeights, $labels);
         $yMax = $this->getYMax($exerciseMaxWeights) * $this->CHART_MODIFIER;
         $options = $this->getOptions($yMax);
-
         $chart = Chartjs::build()
             ->name("WorkoutProgressionChart")
             ->type("line")
@@ -170,7 +169,7 @@ class WorkoutService
     {
         $maxWeights = [];
         foreach ($workouts as $date => $exercises) {
-            $formattedDate = Carbon::parse($date)->format('m-d-Y');
+            $formattedDate = Carbon::parse($date)->format('m-d-Y H:i');
             foreach ($exercises as $exerciseName => $sets) {
                 foreach ($sets as $set) {
                     if (!isset($maxWeights[$exerciseName])) {
@@ -211,7 +210,7 @@ class WorkoutService
     {
         $labels = [];
         foreach (array_keys($workouts) as $date) {
-            $labels[] = Carbon::parse($date)->format('m-d-Y');
+            $labels[] = Carbon::parse($date)->format('m-d-Y H:i');
         }
         return $labels;
     }
