@@ -10,6 +10,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Str;
 
 class WorkoutController extends Controller
 {
@@ -117,7 +118,7 @@ class WorkoutController extends Controller
         ]);
     }
 
-    public function download(Request $request)
+    public function downloadChart(Request $request)
     {
         $base64 = $request->input('image');
         $plan = $request->input('plan', 'Workout');
@@ -138,6 +139,18 @@ class WorkoutController extends Controller
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'attachment; filename="chart.pdf"',
         ]);
+    }
+
+    public function download(string $id)
+    {
+        $plan = $this->workoutPlanService->getWorkoutPlanById($id);
+        $plan = $this->exerciseDBService->getExercisesForPlan($plan);
+        $pdf = Pdf::loadView('workout.create-pdf', [
+            'plan' => $plan,
+        ])->setPaper('a4', );
+
+        $filename = Str::slug($plan['name'], '_') . '.pdf';
+        return $pdf->download($filename);
     }
 
 }
