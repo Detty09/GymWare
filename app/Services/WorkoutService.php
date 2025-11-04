@@ -169,7 +169,7 @@ class WorkoutService
     {
         $maxWeights = [];
         foreach ($workouts as $date => $exercises) {
-            $formattedDate = Carbon::parse($date)->format('m-d-Y H:i');
+            $formattedDate = Carbon::parse($date)->format('d-m-Y H:i:s');
             foreach ($exercises as $exerciseName => $sets) {
                 foreach ($sets as $set) {
                     if (!isset($maxWeights[$exerciseName])) {
@@ -210,7 +210,7 @@ class WorkoutService
     {
         $labels = [];
         foreach (array_keys($workouts) as $date) {
-            $labels[] = Carbon::parse($date)->format('m-d-Y H:i');
+            $labels[] = Carbon::parse($date)->format('d-m-Y H:i:s');
         }
         return $labels;
     }
