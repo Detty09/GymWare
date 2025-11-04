@@ -32,7 +32,7 @@
         </div>
 
         @if (isset($error))
-            <h1 class="text-2xl mt-6 text-red-600">{{$error}}</h1>
+            <h1 class="text-2xl mt-6 text-red-600 w-3/4">{{$error}}</h1>
         @endif
 
         <div class="flex w-3/4 justify-between">
