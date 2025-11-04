@@ -3,54 +3,65 @@
 @section('title', "Progression of {$plan}")
 
 @section('content')
-    <div class="flex flex-col items-center w-full">
+    <div class="flex flex-col items-center w-full px-10 bg-[#141414] text-gray-100">
 
-        <form method="GET" action="/workout/progression/{{$id}}"
-              class="mt-6">
-            <label for="chart">Chart to show:</label>
-            <select
-                name="chart"
-                id="chart"
-                class="border border-gray-700 rounded-lg px-3 py-2 text-black bg-white/10 hover:border-orange-600 transition ease-in-out duration-100"
-                onChange="this.form.submit()"
-            >
-                <option
-                    class="text-black"
-                    value="max-lifts"
-                    {{ request('chart') === 'max-lifts' ? 'selected' : '' }}>
-                    Max Lifts
-                </option>
-                <option
-                    class="text-black"
-                    value="total-weight"
-                    {{ request('chart') === 'total-weight' ? 'selected' : '' }}>
-                    Total Weight
-                </option>
-            </select>
-        </form>
+        <div class="flex flex-col items-start justify-start w-3/4 pb-3 border-b border-white/20">
+            <form method="GET" action="/workout/progression/{{$id}}"
+                  class="mt-6 text-lg py-2 rounded-xl">
+                <label for="chart" class="font-semibold">Chart to show:</label>
+                <select
+                    name="chart"
+                    id="chart"
+                    class="ml-2 text-sm border border-white/20 rounded-lg px-3 py-2 text-gray-100 hover:border-orange-600 transition ease-in-out duration-100"
+                    onChange="this.form.submit()"
+                >
+                    <option
+                        class="text-black"
+                        value="max-lifts"
+                        {{ request('chart') === 'max-lifts' ? 'selected' : '' }}>
+                        Max Lifts
+                    </option>
+                    <option
+                        class="text-black"
+                        value="total-weight"
+                        {{ request('chart') === 'total-weight' ? 'selected' : '' }}>
+                        Total Weight
+                    </option>
+                </select>
+            </form>
+        </div>
 
         @if (isset($error))
-            <h1 class="text-2xl mt-6 text-red-600">{{$error}}</h1>
+            <h1 class="text-2xl mt-6 text-red-600 w-3/4">{{$error}}</h1>
         @endif
 
+        <div class="flex w-3/4 justify-between">
+            <a class="" href="/workout-planner">
+                <x-button
+                    class="mt-6 justify-center border border-orange-600 hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-transform ease-in-out duration-200">
+                    Back to Planner
+                </x-button>
+            </a>
+
+            @if (isset($chart))
+                <div class="flex justify-end w-3/4">
+                    <x-button type="button" id="download"
+                              class="my-6 bg-orange-600 border border-orange-600 hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-transform ease-in-out duration-200">
+                        Download Chart
+                    </x-button>
+                </div>
+            @endif
+        </div>
+
         @if (isset($chart))
-            <x-button type="button" id="download"
-                      class="mt-6 justify-center bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900">
-                Download Chart
-            </x-button>
-            <div class="w-3/4 mt-20">
-                <h1 class="text-center text-3xl font-bold mb-6">Progression of {{$plan}}</h1>
+
+
+            <div class="w-3/4 bg-gray-200 border border-white/20 p-6 rounded-xl">
+                <h1 class="text-center text-3xl font-bold mb-6 text-black">Progression of {{$plan}}</h1>
                 <x-chartjs-component :chart="$chart"/>
             </div>
         @endif
 
-        <a class="" href="/workout-planner">
-            <x-button
-                class="mt-6 justify-center bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900">
-                Go
-                Back to Planner
-            </x-button>
-        </a>
     </div>
 
     <script>
