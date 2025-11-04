@@ -31,7 +31,7 @@
                         <x-form.error name="name"/>
 
                         <x-button type="submit"
-                                  class="justify-center bg-transparent border border-orange-600 hover:bg-orange-600 transition ease-in-out duration-200 focus:bg-orange-600">
+                                  class="justify-center bg-transparent border border-orange-600 hover:bg-orange-500 hover:border-orange-500 transition ease-in-out duration-200 focus:bg-orange-600">
                             Rename
                         </x-button>
                     </div>
@@ -50,7 +50,7 @@
                 <div class="flex gap-2 items-center">
                     <a href="/workout-planner/exercise/create/{{ $plan['id'] }}">
                         <x-button type="button"
-                                  class="justify-center bg-orange-600 border border-orange-600  hover:bg-orange-500 hover:scale-105 transition-transform ease-in-out duration-200">
+                                  class="justify-center bg-orange-600 border border-orange-600  hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-transform ease-in-out duration-200">
                             Add new Exercise
                         </x-button>
                     </a>

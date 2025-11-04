@@ -9,11 +9,11 @@
 
 <x-navbar></x-navbar>
 
-<main class="flex-1 flex justify-center items-start">
+<main class="flex-1 flex justify-center items-start bg-[#141414]">
     @yield('content')
 </main>
 
-<footer class="flex justify-center mr-6">
+<footer class="w-screen flex justify-start mr-6 bg-[#141414]">
     <p class="text-gray-300">&copy; {{ date('Y') }} GymWare</p>
 </footer>
 </body>
