@@ -19,7 +19,7 @@
                 </a>
                 <a href="/workout-planner"
                    class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
-                   {{ request()->is('workout-planner') ? 'text-orange-600' : '' }}">
+                   {{ request()->is('workout-planner*') ? 'text-orange-600' : '' }}">
                     Workout Planner
                 </a>
                 <a href="/workout/history"

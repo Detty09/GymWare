@@ -6,7 +6,7 @@
         <select
             name="bodypart"
             id="bodypart"
-            class="border border-gray-700 rounded-lg px-3 py-2 text-white bg-white/10 hover:border-orange-600 transition ease-in-out duration-100"
+            class="border border-white/20 rounded-lg px-3 py-2 text-white bg-white/10 hover:border-orange-600 transition ease-in-out duration-100"
             onChange="this.form.submit()"
         >
             <option
@@ -28,7 +28,7 @@
         <select
             name="equipment"
             id="equipment"
-            class="border border-gray-700 rounded-lg px-3 py-2 text-white bg-white/10 hover:border-orange-600 transition ease-in-out duration-100"
+            class="border border-white/20 rounded-lg px-3 py-2 text-white bg-white/10 hover:border-orange-600 transition ease-in-out duration-100"
             onChange="this.form.submit()"
         >
             <option

@@ -1,8 +1,8 @@
-<div class="flex flex-row space-x-4 items-center border-2 rounded-sm p-2">
-    <p class="text-xl font-bold text-gray-700">{{ $plan['name'] }}</p>
+<div class="flex flex-row space-x-4 items-center border-1 border-white/20 rounded-lg py-2 px-3 text-gray-100 bg-white/10">
+    <p class="text-md font-semibold border-r pr-4 border-white/20">{{ $plan['name'] }}</p>
 
     <div class="relative group inline-block">
-        <a href="/workout/create/{{ $plan['id'] }}" class="text-xl text-gray-700 hover:text-blue-600">
+        <a href="/workout/create/{{ $plan['id'] }}" class="text-xl text-orange-600 hover:text-gray-100">
             <i class="fa-solid fa-dumbbell"></i>
         </a>
         <span
@@ -12,7 +12,7 @@
     </div>
 
     <div class="relative group inline-block">
-        <a href="/workout/history/{{ $plan['id'] }}" class="text-xl text-gray-700 hover:text-blue-600">
+        <a href="/workout/history/{{ $plan['id'] }}" class="text-xl text-orange-600 hover:text-gray-100">
             <i class="fa-solid fa-clock-rotate-left"></i>
         </a>
         <span
@@ -22,7 +22,7 @@
     </div>
 
     <div class="relative group inline-block">
-        <a href="/workout/progression/{{ $plan['id'] }}" class="text-xl text-gray-700 hover:text-blue-600">
+        <a href="/workout/progression/{{ $plan['id'] }}" class="text-xl text-orange-600 hover:text-gray-100">
             <i class="fa-solid fa-chart-simple"></i>
         </a>
         <span
@@ -32,7 +32,7 @@
     </div>
 
     <div class="relative group inline-block">
-        <a href="/workout-planner/edit/{{ $plan['id'] }}" class="text-xl text-gray-700 hover:text-blue-600">
+        <a href="/workout-planner/edit/{{ $plan['id'] }}" class="text-xl text-orange-600 hover:text-gray-100">
             <i class="fa-solid fa-file-pen"></i>
         </a>
         <span
@@ -45,8 +45,8 @@
         @csrf
         @method('DELETE')
 
-        <div class="relative group inline-block">
-            <button type="submit" class="cursor-pointer text-xl text-gray-700 hover:text-blue-600">
+        <div class="relative group inline-block border-l border-white/20 pl-3">
+            <button type="submit" class="cursor-pointer text-xl text-red-600 hover:text-red-400">
                 <i class="fa-solid fa-trash"></i>
             </button>
             <span
