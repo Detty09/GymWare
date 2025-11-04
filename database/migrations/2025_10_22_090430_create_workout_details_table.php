@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('set');
             $table->integer('reps');
-            $table->integer('weight');
+            $table->float('weight');
         });
     }
 

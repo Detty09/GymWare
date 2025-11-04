@@ -13,7 +13,8 @@
                 <div class="text-center border-2 rounded-md p-6 mb-6">
                     <h1 class="text-2xl">Workout - {{$loop->iteration}}</h1>
                     <p class="italic">{{ $date }}</p>
-                    @foreach($workout as $exerciseName => $exerciseData )
+                    <p>Total weight: {{$workout['total_weight']}} kg</p>
+                    @foreach($workout['exercises'] as $exerciseName => $exerciseData )
                         <x-exercise.table-card :exercise-name="$exerciseName"
                                                :exercise-data="$exerciseData"></x-exercise.table-card>
                     @endforeach

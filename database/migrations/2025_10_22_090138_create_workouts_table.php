@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(WorkoutPlan::class)->constrained()->cascadeOnDelete();
             $table->dateTime('date')->useCurrent();
+            $table->float('total_weight')->default(0);
         });
     }
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Workout extends Model
 {
-    protected $fillable = ['workout_plan_id', 'date'];
+    protected $fillable = ['workout_plan_id', 'date', 'total_weight'];
     public $timestamps = false;
 
     public function workoutPlan(): BelongsTo {

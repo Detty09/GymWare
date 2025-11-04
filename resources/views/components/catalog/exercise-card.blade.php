@@ -25,7 +25,7 @@
                     <label for="sets" class="text-gray-600 mb-2 text-sm">
                         <strong>Sets:</strong>
                     </label>
-                    <input id="sets" name="sets" type="number" min="1" required class="w-10 text-gray-600 mb-2 text-sm text-center align-middle"/>
+                    <input id="sets" name="sets" type="number" min="1" step="1" required class="w-10 text-gray-600 mb-2 text-sm text-center align-middle"/>
                 </div>
                 <x-button type="submit"
                           class="mt-1 justify-center bg-blue-600  hover:bg-blue-700 transition focus:bg-blue-600 active:bg-blue-900">

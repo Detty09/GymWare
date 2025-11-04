@@ -24,9 +24,9 @@ class WorkoutService
     }
 
 
-    public function createWorkout(int $planId): int
+    public function createWorkout(int $planId, float $totalWeight): int
     {
-        return $this->workoutRepository->create($planId);
+        return $this->workoutRepository->create($planId, $totalWeight);
     }
 
     public function createWorkoutDetails(array $data): void
@@ -87,26 +87,29 @@ class WorkoutService
 
     private function formatDetail(mixed $workoutData): array
     {
-        $details = [];
+        $details = ['total_weight' => $workoutData['total_weight'], 'exercises' => []];
         $data = $workoutData['details'];
 
         for ($i = 0; $i < count($data); $i++) {
             $exercise = $data[$i]['name'];
 
-            if (!array_key_exists($exercise, $details)) {
-                $details[$exercise] = [
+            if (!array_key_exists($exercise, $details['exercises'])) {
+                $details['exercises'][$exercise] = [
                     ['set' => $data[$i]['set'],
                         'reps' => $data[$i]['reps'],
                         'weight' => $data[$i]['weight'],]
                 ];
             } else {
-                $details[$exercise][] =
+                $details['exercises'][$exercise][] =
                     ['set' => $data[$i]['set'],
                         'reps' => $data[$i]['reps'],
                         'weight' => $data[$i]['weight'],];
             }
         }
-        return [$workoutData['date'] => $details];
+
+        $date = Carbon::parse($workoutData['date'])->format('d-m-Y H:i:s');
+
+        return [$date => $details];
     }
 
     public function getWorkoutsWithDetailsByUserId(string $userId): array
@@ -147,13 +150,15 @@ class WorkoutService
         return true;
     }
 
-    public function createWorkoutChart(array $workouts): Builder
+    public function getMaxLiftsChart(array $workouts): Builder
     {
         $exerciseMaxWeights = $this->getMaxWeights($workouts['workouts']);
         $labels = $this->getLabels($workouts['workouts']);
+
         $datasets = $this->getData($exerciseMaxWeights, $labels);
         $yMax = $this->getYMax($exerciseMaxWeights) * $this->CHART_MODIFIER;
         $options = $this->getOptions($yMax);
+
         $chart = Chartjs::build()
             ->name("WorkoutProgressionChart")
             ->type("line")
@@ -168,9 +173,9 @@ class WorkoutService
     private function getMaxWeights(array $workouts): array
     {
         $maxWeights = [];
-        foreach ($workouts as $date => $exercises) {
+        foreach ($workouts as $date => $data) {
             $formattedDate = Carbon::parse($date)->format('d-m-Y H:i:s');
-            foreach ($exercises as $exerciseName => $sets) {
+            foreach ($data['exercises'] as $exerciseName => $sets) {
                 foreach ($sets as $set) {
                     if (!isset($maxWeights[$exerciseName])) {
                         $maxWeights[$exerciseName] = [];
@@ -190,6 +195,8 @@ class WorkoutService
 
         foreach ($exerciseMaxWeights as $exerciseName => $dataByDate) {
             $data = [];
+            $bgColors = $this->getRandomColors($exerciseMaxWeights);
+
             foreach ($labels as $label) {
                 $data[] = $dataByDate[$label] ?? null;
             }
@@ -198,11 +205,9 @@ class WorkoutService
                 'label' => $exerciseName,
                 'data' => $data,
                 'fill' => false,
-                'backgroundColor' => 'rgba(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ',0.3)',
-                'borderColor' => 'rgba(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ',0.7)',
+                'borderColor' => $bgColors,
             ];
         }
-
         return $datasets;
     }
 
@@ -223,6 +228,10 @@ class WorkoutService
                     'scaleLabel' => [
                         'display' => true,
                         'labelString' => 'Workout Date'
+                    ],
+                    'ticks' => [
+                        'autoSkip' => true,
+                        'maxTicksLimit' => 10
                     ]
                 ]],
                 'yAxes' => [[
@@ -257,5 +266,67 @@ class WorkoutService
             }
         }
         return $yMax;
+    }
+
+    public function getTotalWeight(array $exerciseId, array $weights, array $reps): float
+    {
+        $total = 0;
+
+        foreach ($exerciseId as $exercise) {
+            for ($i = 0; $i < count($weights[$exercise]); $i++) {
+                $total += $weights[$exercise][$i] * $reps[$exercise][$i];
+            }
+        }
+
+        return $total;
+    }
+
+    public function getTotalWeightsChart($id): Builder
+    {
+        $data = $this->workoutRepository->findByPlanIdDateAndWeight($id);
+        $labels = array_keys($data);
+        $totalWeights = array_values($data);
+
+        $datasets = $this->getDataForTotalWeights($totalWeights, $labels);
+        $yMax = max($totalWeights) * $this->CHART_MODIFIER;
+        $options = $this->getOptions($yMax);
+
+        $chart = Chartjs::build()
+            ->name("WorkoutProgressionChart")
+            ->type("bar")
+            ->size(["width" => 400, "height" => 200])
+            ->labels($labels)
+            ->datasets($datasets)
+            ->options($options);
+
+        return $chart;
+    }
+
+    private function getDataForTotalWeights(array $totalWeights): array
+    {
+        $bgColors = $this->getRandomColors($totalWeights);
+
+        return [[
+            'label' => 'Total Weight',
+            'data' => $totalWeights,
+            'fill' => false,
+            'borderColor' => 'rgba(0, 0, 0, 0.9)',
+            'borderWidth' => 1,
+            'backgroundColor' => $bgColors,
+        ]];
+    }
+
+    private function getRandomColors(array $array): array
+    {
+        $colors = [];
+
+        foreach ($array as $value) {
+            $r = rand(50, 255);
+            $g = rand(50, 255);
+            $b = rand(50, 255);
+
+            $colors[] = "rgba($r, $g, $b, 0.7)";
+        }
+        return $colors;
     }
 }
