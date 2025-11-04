@@ -85,6 +85,7 @@ class WorkoutController extends Controller
             $plan = $this->workoutPlanService->getWorkoutPlanById($id);
             return view('workout.progression', [
                 'plan' => $plan['name'],
+                'id' => $id,
                 'error' => 'You have to complete at least 2 of this workout to check progression!'
             ]);
         }
