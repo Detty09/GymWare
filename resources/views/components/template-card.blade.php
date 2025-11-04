@@ -1,4 +1,4 @@
-<div class="flex flex-row space-x-4 items-center border-1 border-white/20 rounded-lg py-2 px-3 text-gray-100 bg-white/10">
+<div class="flex flex-row space-x-4 items-center border-1 border-white/10 rounded-lg py-2 px-3 text-gray-100 bg-white/10">
     <p class="text-md font-semibold border-r pr-4 border-white/20">{{ $plan['name'] }}</p>
 
     <div class="relative group inline-block">

@@ -11,7 +11,7 @@
         <div class="absolute inset-0 bg-black/80"></div>
 
         <div class="relative flex justify-center p-10">
-            <div class="flex flex-col items-center bg-[#141414]/90 p-5 mt-6 text-gray-100 rounded-xl border border-white/20">
+            <div class="flex flex-col items-center bg-[#141414]/90 py-5 px-10 mt-6 text-gray-100 rounded-xl border border-white/20">
                 <h1 class="text-3xl font-semibold">{{$plan['name']}} workout</h1>
 
                 <form action="/workout/create" method="POST" class="flex flex-col justify-center">
@@ -31,7 +31,7 @@
                         </div>
                     @else
                         @foreach($plan['exercises'] as $exercise)
-                            <div class="flex flex-col py-6 border-b border-orange-600">
+                            <div class="flex flex-col py-6 border-b border-white/20">
                                 <p class="text-xl pr-2">{{ucfirst($exercise['data']['name'])}}</p>
                                 <input type="number" name="exercise-id[]" value="{{ $exercise['id'] }}" hidden/>
                                 <input type="text" name="exercise-name[]" value="{{ucfirst($exercise['data']['name'])}}"

@@ -1,5 +1,5 @@
 <form method="POST" action="/workout-planner/exercise/{{ $exercise['id'] }}"
-      class="flex-grow items-center w-full bg-white/5 rounded-lg p-5 transition">
+      class="flex-grow items-center w-full bg-white/5 rounded-lg p-5 transition border border-white/10">
     @csrf
     @method('DELETE')
 

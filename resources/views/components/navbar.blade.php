@@ -1,5 +1,5 @@
 <div>
-    <div class="hidden space-x-4 sm:flex sm:items-center p-2 bg-[#141414] border-b border-gray-700 sm:justify-between">
+    <div class="hidden space-x-4 sm:flex sm:items-center p-2 bg-[#141414] border-b border-white/20 sm:justify-between">
         @auth
             <div>
                 <a href="{{ route('dashboard') }}"
