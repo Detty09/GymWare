@@ -12,7 +12,7 @@
 
         <div class="relative flex justify-center p-10">
             <div class="flex flex-col items-center bg-[#141414]/90 p-5 mt-6 text-gray-100 rounded-xl border border-white/20">
-                <h1 class="text-3xl font-semibold text-orange-600">{{$plan['name']}} workout</h1>
+                <h1 class="text-3xl font-semibold">{{$plan['name']}} workout</h1>
 
                 <form action="/workout/create" method="POST" class="flex flex-col justify-center">
                     @csrf
@@ -24,14 +24,14 @@
 
                             <a href="/workout-planner/edit/{{$plan['id']}}" class="w-full">
                                 <x-button type="button"
-                                          class="w-full mt-6 justify-center bg-orange-600 hover:bg-orange-500">
+                                          class="w-full mt-6 justify-center bg-orange-600 hover:bg-orange-500 hover:scale-105 transition-transform ease-in-out duration-200">
                                     Edit Template
                                 </x-button>
                             </a>
                         </div>
                     @else
                         @foreach($plan['exercises'] as $exercise)
-                            <div class="flex flex-col py-6 border-b border-white/20">
+                            <div class="flex flex-col py-6 border-b border-orange-600">
                                 <p class="text-xl pr-2">{{ucfirst($exercise['data']['name'])}}</p>
                                 <input type="number" name="exercise-id[]" value="{{ $exercise['id'] }}" hidden/>
                                 <input type="text" name="exercise-name[]" value="{{ucfirst($exercise['data']['name'])}}"
