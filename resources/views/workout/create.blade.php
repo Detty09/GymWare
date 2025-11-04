@@ -5,10 +5,10 @@
 @section('content')
     <div class="relative min-h-screen w-full">
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-             style="background-image: url('/imgaes/planner-bg.jpg')">
+             style="background-image: url('/images/planner-bg.jpg')">
         </div>
 
-        <div class="absolute inset-0 bg-black/70"></div>
+        <div class="absolute inset-0 bg-black/80"></div>
 
         <div class="relative flex justify-center p-10">
             <div class="flex flex-col items-center bg-[#141414]/90 p-5 mt-6 text-gray-100 rounded-xl border border-white/20">

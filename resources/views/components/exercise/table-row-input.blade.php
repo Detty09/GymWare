@@ -16,6 +16,7 @@
             type="number"
             name="reps[{{$id}}][]"
             min="0"
+            step="1"
             required value="{{ old('reps.' . $id . '.0') }}"
             class="w-full bg-white/20 focus:outline-none focus:ring-1 focus:ring-orange-600"
         />

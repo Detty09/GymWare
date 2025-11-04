@@ -27,6 +27,11 @@
                    {{ request()->is('workout/history') ? 'text-orange-600' : '' }}">
                     Workout History
                 </a>
+                <a href="/gymmap"
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   {{ request()->is('gymmap') ? 'text-orange-600' : '' }}">
+                    Nearby Gyms
+                </a>
             </div>
             <div>
                 <form method="POST" action="{{ route('logout') }}">

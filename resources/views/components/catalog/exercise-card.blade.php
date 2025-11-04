@@ -33,7 +33,7 @@
                         <label for="sets" class="text-gray-100 font-light mb-2 text-sm">
                             <strong>Sets:</strong>
                         </label>
-                        <input id="sets" name="sets" type="number" min="1" placeholder="0" required class="w-15 border border-orange-600 rounded-md text-gray-100 mb-2 text-sm text-center align-middle focus:outline-none focus:ring focus:ring-orange-600 focus:ring-offset"/>
+                        <input id="sets" name="sets" type="number" min="1" step="1" placeholder="0" required class="w-15 border border-orange-600 rounded-md text-gray-100 mb-2 text-sm text-center align-middle focus:outline-none focus:ring focus:ring-orange-600 focus:ring-offset"/>
                     </div>
                     <x-button type="submit"
                               class="mt-6 justify-center bg-orange-600  hover:bg-orange-500 hover:scale-105 transition-transform ease-in-out duration-200">

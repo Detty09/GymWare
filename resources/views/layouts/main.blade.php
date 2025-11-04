@@ -6,6 +6,8 @@
 </head>
 <body class="min-h-screen flex flex-col bg-white">
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="icon" href="{{ asset('images/dumbbell-svgrepo-com.svg') }}" type="image/png">
+
 
 <x-navbar></x-navbar>
 
