@@ -5,7 +5,6 @@ use App\Http\Controllers\GymController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExerciseDBController;
 use App\Http\Controllers\ExerciseController;
-use App\Http\Controllers\ExerciseDetailController;
 use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\WorkoutPlanController;
 use App\Http\Controllers\AppointmentController;
@@ -54,6 +53,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/workout/history', [WorkoutController::class, 'index']);
     Route::get('/workout/history/{id}', [WorkoutController::class, 'show'] );
+
+    Route::get('/workout/progression/{id}', [WorkoutController::class, 'progression'] );
+});
 
 Route::middleware('auth')->group(function (){
     Route::get('/coaches', [AppointmentController::class, 'index'])->name('coaches.index');

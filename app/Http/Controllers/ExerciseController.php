@@ -71,8 +71,17 @@ class ExerciseController extends Controller
     public function store(Request $request): RedirectResponse|Redirector
     {
         $planId = $request->input('plan-id');
+
+        if (empty($planId)) {
+            return redirect('/workout-planner');
+        }
+
         $sets = $request->input('sets');
         $apiId = $request->input('api-exercise-id');
+
+        if ($sets < 1 || empty($sets) || empty($apiId)) {
+            return redirect('/workout-planner/exercise/create/'.$planId)->with('error', 'Something went wrong');
+        }
 
         $this->exerciseService->createExercise([
             'workout_plan_id' => $planId,
@@ -80,7 +89,6 @@ class ExerciseController extends Controller
             'sets' => $sets,
         ]);
         return redirect("/workout-planner/edit/{$planId}");
-//        return redirect("/workout-planner/details/edit/{$exerciseId}")->with('plan_id', $planId);
     }
 
     public function destroy(Request $request, $exerciseId): RedirectResponse

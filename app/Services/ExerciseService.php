@@ -19,11 +19,6 @@ class ExerciseService
         return $this->repository->createExercise($data);
     }
 
-    public function getExerciseById(string $exerciseId): array
-    {
-        return $this->repository->getById($exerciseId);
-    }
-
     public function deleteExercise($exerciseId): void
     {
         $this->repository->delete($exerciseId);
