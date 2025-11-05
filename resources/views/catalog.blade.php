@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="max-w-6xl min-w-6xl mx-auto py-8">
+    <div class="max-w-6xl mx-auto py-8 px-6">
         <x-catalog.filtering-form
             action="/exercises"
             :bodyparts="$bodyparts"

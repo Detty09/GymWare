@@ -3,37 +3,37 @@
         @auth
             <div>
                 <a href="{{ route('dashboard') }}"
-                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition font-semibold
                    {{ request()->is('dashboard') ? 'text-orange-600' : '' }}">
                     Dashboard
                 </a>
                 <a href="/exercises"
-                   class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-l transition
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-l transition font-semibold
                    {{ request()->is('exercises*') ? 'text-orange-600' : '' }}">
                     Exercises
                 </a>
                 <a href="{{ route('profile.edit') }}"
-                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition font-semibold
                    {{ request()->is('profile*') ? 'text-orange-600' : '' }}">
                     Profile
                 </a>
                 <a href="/workout-planner"
-                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition font-semibold
                    {{ request()->is('workout-planner*') ? 'text-orange-600' : '' }}">
                     Workout Planner
                 </a>
                 <a href="/workout/history"
-                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition font-semibold
                    {{ request()->is('workout/history') ? 'text-orange-600' : '' }}">
                     Workout History
                 </a>
                 <a href="{{ route('appointments.myAppointments') }}"
-                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition font-semibold
                    {{ request()->is('my-appointments*') ? 'text-orange-600' : '' }}">
                     Appointments
                 </a>
                 <a href="/gymmap"
-                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition font-semibold
                    {{ request()->is('gymmap') ? 'text-orange-600' : '' }}">
                     Nearby Gyms
                 </a>
