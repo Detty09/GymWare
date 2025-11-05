@@ -7,15 +7,11 @@
 
     <title>@yield('title', 'GymWare')</title>
     <link rel="icon" href="{{ asset('images/dumbbell-svgrepo-com.svg') }}" type="image/png">
-
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <!-- Optional: Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Autofill fix */
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
         input:-webkit-autofill {
             caret-color: white;
             box-shadow: inset 0 0 0 1000px transparent;
@@ -23,6 +19,13 @@
             transition: background-color 5000s ease-in-out 0s;
         }
     </style>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Optional: Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
 </head>
 <body class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
 
