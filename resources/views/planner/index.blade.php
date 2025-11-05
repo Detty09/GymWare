@@ -11,8 +11,8 @@
         <div class="absolute inset-0 bg-black/80"></div>
 
         <div class="relative flex justify-center p-10">
-            <div class="flex flex-col gap-10 max-w-1/3">
-                <div class="flex flex-col items-center mt-6 space-y-6 text-gray-100 bg-[#141414]/90 border border-white/20 p-5 rounded-xl">
+            <div class="flex flex-col gap-10 max-w-1/3 min-w-[400px]">
+                <div class="flex flex-col items-center min-w-[400px] px-5 mt-6 space-y-6 text-gray-100 bg-[#141414]/90 border border-white/20 py-5 rounded-xl">
                     <h1 class="font-semibold text-xl">My Templates</h1>
 
                     <div class="flex flex-col items-start gap-5">
