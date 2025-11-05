@@ -42,7 +42,7 @@
         .back:active {
             transform: translateY(0);
         }
-        select { padding:5px 10px; background: rgb(256,256,256,0.1); color:white; border-color:rgb(256,256,256,0.2); border-radius:6px; cursor:pointer;}
+        select { padding:5px 10px; background: rgb(256,256,256); color:black; border-color:rgb(256,256,256,0.2); border-radius:6px; cursor:pointer;}
 
         .label { background:white; border:1px solid #999; border-radius:6px; padding:2px 4px; font-size:12px; pointer-events:none; }
     </style>
