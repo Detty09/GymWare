@@ -306,7 +306,6 @@ class WorkoutService
 
     private function getDataForTotalWeights(array $totalWeights): array
     {
-        $bgColors = $this->getRandomColors($totalWeights);
 
         return [[
             'label' => 'Total Weight',
@@ -314,7 +313,7 @@ class WorkoutService
             'fill' => false,
             'borderColor' => 'rgba(0, 0, 0, 0.9)',
             'borderWidth' => 1,
-            'backgroundColor' => $bgColors,
+            'backgroundColor' => 'rgba(234, 90, 21, 1)',
         ]];
     }
 
