@@ -144,6 +144,11 @@ class WorkoutController extends Controller
     public function download(string $id)
     {
         $plan = $this->workoutPlanService->getWorkoutPlanById($id);
+
+        if (empty($plan['exercises'])) {
+            return redirect('/workout-planner/edit/' . $id);
+        }
+
         $plan = $this->exerciseDBService->getExercisesForPlan($plan);
         $pdf = Pdf::loadView('workout.create-pdf', [
             'plan' => $plan,
