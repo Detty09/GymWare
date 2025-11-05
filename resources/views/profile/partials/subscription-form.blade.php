@@ -1,7 +1,7 @@
 @if(Auth::user()->subscription)
     <section>
         <header>
-        <h3 class="text-lg font-semibold mb-4">Manage Subscription</h3>
+        <h3 class="text-lg font-medium mb-4 text-orange-600">Manage Subscription</h3>
         </header>
         @if(session('status_subscription'))
             <p class="text-green-600 mb-4">{{ session('status_subscription') }}</p>
@@ -15,13 +15,13 @@
             <x-text-input id="card_number" name="card_number" type="text"
                           inputmode="numeric" maxlength="19"
                           placeholder="1234 5678 9012 3456"
-                          class="block mt-1 w-full" />
+                          class="block mt-1 mb-2 w-full border border-white/20 focus:outline-none focus:ring-1 focus:ring-orange-600" />
 
             <x-input-label for="expiry_date" :value="__('Expiration (MM/YY)')" required />
             <x-text-input id="expiry_date" name="expiry_date" type="text"
                           inputmode="numeric" maxlength="5"
                           placeholder="MM/YY"
-                          class="block mt-1 w-full" />
+                          class="block mt-1 mb-2 w-full border border-white/20 focus:outline-none focus:ring-1 focus:ring-orange-600" />
             <p id="expiry_warning" class="text-red-600 text-sm mt-2 hidden">
                 ⚠️ Your card appears to be expired.
             </p>
@@ -32,7 +32,7 @@
             <x-text-input id="cvv" name="cvv" type="text"
                           inputmode="numeric"
                           maxlength="4" placeholder="123"
-                          class="block mt-1 w-full" />
+                          class="block mt-1 mb-2 w-full border border-white/20 focus:outline-none focus:ring-1 focus:ring-orange-600" />
 
             <div>
             <x-primary-button class="mt-4">Update Payment</x-primary-button>

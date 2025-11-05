@@ -17,23 +17,25 @@
                     @csrf
                     @method('PATCH')
 
-                    <div class="flex gap-2 items-center justify-center h-full">
-                        <label for="name" class="text-sm mr-2">
-                            Workout Name:
-                        </label>
-                        <input placeholder='{{ $plan['name'] }}'
-                               id="name"
-                               name="name"
-                               required
-                               class="text-sm border border-white/20 p-1 rounded-lg focus:outline-none focus:ring-1 focus:ring-orange-600"
-                        />
+                    <div class="flex flex-col gap-2 items-center justify-center h-full">
+                        <div>
+                            <label for="name" class="text-sm mr-2">
+                                Workout Name:
+                            </label>
+                            <input placeholder='{{ $plan['name'] }}'
+                                   id="name"
+                                   name="name"
+                                   required
+                                   class="text-sm border border-white/20 p-1 rounded-lg focus:outline-none focus:ring-1 focus:ring-orange-600"
+                            />
+
+                            <x-button type="submit"
+                                      class="justify-center bg-transparent border border-orange-600 hover:bg-orange-500 hover:border-orange-500 transition ease-in-out duration-200 focus:bg-orange-600">
+                                Rename
+                            </x-button>
+                        </div>
 
                         <x-form.error name="name"/>
-
-                        <x-button type="submit"
-                                  class="justify-center bg-transparent border border-orange-600 hover:bg-orange-500 hover:border-orange-500 transition ease-in-out duration-200 focus:bg-orange-600">
-                            Rename
-                        </x-button>
                     </div>
                 </form>
 

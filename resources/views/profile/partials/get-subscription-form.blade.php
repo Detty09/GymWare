@@ -2,14 +2,14 @@
 @if(!Auth::user()->subscription)
     <!-- Show "Get Subscription" if not subscribed -->
     <section id="subscription-section">
-        <h2>Get subscription!</h2>
-            <button id="subscribe" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
-                Subscribe
-            </button>
+        <h2 class="mb-6">Get subscription!</h2>
+        <x-primary-button id="subscribe">
+            Subscribe
+        </x-primary-button>
     </section>
     <!-- Show Payment info if subscribed -->
     <section id="payment-section" class="hidden">
-        <h2>Manage Payment</h2>
+        <h2 class="text-lg font-medium text-orange-600 mb-1">Manage Payment</h2>
         <form method="POST" action="{{ route('profile.subscribe') }}">
             @csrf
             @method('PATCH')
@@ -18,13 +18,13 @@
             <x-text-input id="card_number" name="card_number" type="text"
                           inputmode="numeric" maxlength="19"
                           placeholder="1234 5678 9012 3456"
-                          class="block mt-1 w-full" />
+                          class="block mt-1 mb-2 w-full border border-white/20 focus:outline-none focus:ring-1 focus:ring-orange-600" />
 
             <x-input-label for="expiry_date" :value="__('Expiration (MM/YY)')" required />
             <x-text-input id="expiry_date" name="expiry_date" type="text"
                           inputmode="numeric" maxlength="5"
                           placeholder="MM/YY"
-                          class="block mt-1 w-full" />
+                          class="block mt-1 mb-2 w-full border border-white/20 focus:outline-none focus:ring-1 focus:ring-orange-600" />
             <p id="expiry_warning" class="text-red-600 text-sm mt-2 hidden">
                 ⚠️ Your card appears to be expired.
             </p>
@@ -35,10 +35,10 @@
             <x-text-input id="cvv" name="cvv" type="text"
                           inputmode="numeric"
                           maxlength="4" placeholder="123"
-                          class="block mt-1 w-full" />
+                          class="block mt-1 mb-2 w-full border border-white/20 focus:outline-none focus:ring-1 focus:ring-orange-600" />
 
             <div>
-                <x-primary-button class="mt-4">Pay</x-primary-button>
+                <x-primary-button class="my-4">Pay</x-primary-button>
             </div>
         </form>
 

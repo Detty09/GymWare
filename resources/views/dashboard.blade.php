@@ -9,25 +9,25 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900">
+            <div class="bg-white/5 overflow-hidden shadow-sm sm:rounded-lg py-6 px-12 text-gray-100 border border-white/20">
                 <h1 class="text-3xl font-bold mb-6">
                     Welcome,
-                    <span class="text-indigo-600">
+                    <span class="text-orange-600">
                         {{ $user->is_coach ? 'Coach ' . $user->name : $user->name }}
                     </span>!
                 </h1>
 
                 @if ($user->is_coach && $user->coach)
-                    <div class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                        <h2 class="text-lg font-semibold text-blue-700">Coach Bio</h2>
-                        <p class="mt-2 text-gray-700">{{ $user->coach->bio }}</p>
+                    <div class="mt-4 p-4 bg-white/10 border border-white/15 rounded-lg">
+                        <h2 class="text-lg font-semibold text-orange-600">Your Bio:</h2>
+                        <p class="mt-2 text-gray-100">{{ $user->coach->bio }}</p>
                     </div>
                 @endif
 
-                <h2 class="text-2xl font-semibold mb-4 mt-6">Our Coaches:</h2>
+                <h2 class="text-2xl font-semibold my-6 border-t border-white/20 pt-4">Our Coaches:</h2>
 
                 @if ($coaches->isEmpty())
-                    <p class="text-gray-600">No coaches available at the moment.</p>
+                    <p class="text-gray-100 italic font-light">No coaches available at the moment.</p>
                 @else
                     <ul class="space-y-4">
                         @foreach ($coaches as $coach)

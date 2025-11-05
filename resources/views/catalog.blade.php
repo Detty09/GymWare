@@ -31,7 +31,10 @@
                     <x-catalog.exercise-card :exercise="$exercise"></x-catalog.exercise-card>
                 </a>
             @empty
-                <p>No exercises found</p>
+                <div class="bg-white/5 border border-white/20 p-2 rounded-xl">
+                    <p class="text-red-500">No exercises found</p>
+                </div>
+
             @endforelse
         </div>
 

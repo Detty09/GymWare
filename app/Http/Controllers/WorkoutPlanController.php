@@ -34,7 +34,7 @@ class WorkoutPlanController extends Controller
     public function store(Request $request): RedirectResponse|Redirector
     {
         $name = $request->validate([
-            'name' => ['required', 'min:3', 'max:255'],
+            'name' => ['required', 'min:3', 'max:255', 'unique:workout_plans,name'],
         ])['name'];
 
         $userId = Auth::id();
@@ -57,7 +57,7 @@ class WorkoutPlanController extends Controller
 
     public function update(Request $request, int $planId): RedirectResponse {
         $newName = $request->validate([
-            'name' => ['required', 'min:3', 'max:255'],
+            'name' => ['required', 'min:3', 'max:255', 'unique:workout_plans,name'],
         ]);
 
         $this->service->updateWorkoutPlan($planId, $newName);
