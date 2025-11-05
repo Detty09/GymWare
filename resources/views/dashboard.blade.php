@@ -9,7 +9,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white/5 overflow-hidden shadow-sm sm:rounded-lg py-6 px-12 text-gray-100 border border-white/20">
+            <div class="bg-white/5 overflow-hidden shadow-sm rounded-lg py-6 px-12 text-gray-100 border border-white/20">
                 <h1 class="text-3xl font-bold mb-6">
                     Welcome,
                     <span class="text-orange-600">
@@ -24,23 +24,23 @@
                     </div>
                 @endif
 
-                <h2 class="text-2xl font-semibold my-6 border-t border-white/20 pt-4">Our Coaches:</h2>
+                <h2 class="text-xl font-semibold my-6 border-t border-white/20 pt-4">Our Coaches:</h2>
 
                 @if ($coaches->isEmpty())
                     <p class="text-gray-100 italic font-light">No coaches available at the moment.</p>
                 @else
                     <ul class="space-y-4">
                         @foreach ($coaches as $coach)
-                            <li class="border-b pb-3">
+                            <li class="border-b pb-3 border-white/20">
                                 <div class="flex items-center gap-4">
                                     <button
-                                        class="coach-btn text-blue-600 font-semibold hover:underline"
+                                        class="coach-btn text-gray-100 hover:underline cursor-pointer hover:text-orange-600"
                                         data-bio="{{ $coach->coach->bio ?? 'This coach has no bio yet.' }}">
                                         Coach {{ $coach->name }}
                                     </button>
 
                                     <a href="{{ route('appointments.create', $coach->coach) }}"
-                                       class="px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-green-700 transition">
+                                       class="px-4 py-2 bg-orange-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-orange-500 transition">
                                         Book Appointment
                                     </a>
                                 </div>
