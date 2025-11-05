@@ -1,4 +1,4 @@
-@extends('layouts.plan')
+@extends('layouts.main')
 
 @section('title', 'Exercise Planner')
 
