@@ -183,12 +183,12 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- CONTACT -->
 ## Contact
 
-Bernadett Kiss - email@email_client.com
-Botond Brindza - email@email_client.com
-Ákos Ilia - email@email_client.com
-Péter Török - p.torok0694@gmail.com
+* Bernadett Kiss - email@email_client.com
+* Botond Brindza - email@email_client.com
+* Ákos Ilia - email@email_client.com
+* Péter Török - p.torok0694@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/CodecoolGlobal/el-proyecte-grande-production-general-peti9406)
+Project Link: [https://github.com/CodecoolGlobal/el-proyecte-grande-production-general-peti9406](https://github.com/CodecoolGlobal/el-proyecte-grande-production-general-peti9406)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
