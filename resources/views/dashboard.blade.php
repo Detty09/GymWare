@@ -45,7 +45,7 @@
                                     </a>
                                 </div>
 
-                                <p class="coach-bio mt-2 text-gray-700 hidden"></p>
+                                <p class="coach-bio mt-2 text-white hidden"></p>
                             </li>
                         @endforeach
                     </ul>

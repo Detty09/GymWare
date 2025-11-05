@@ -10,6 +10,8 @@
             font-family: 'Montserrat', sans-serif;
         }
     </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 </head>
 <body class="min-h-screen flex flex-col bg-black">
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
