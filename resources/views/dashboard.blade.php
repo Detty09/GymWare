@@ -40,7 +40,7 @@
                                     </button>
 
                                     <a href="{{ route('appointments.create', $coach->coach) }}"
-                                       class="px-4 py-2 bg-orange-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-orange-500 transition">
+                                       class="px-4 py-2 bg-orange-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-orange-500 hover:scale-105 transition ease-in-out duration-200">
                                         Book Appointment
                                     </a>
                                 </div>
