@@ -4,6 +4,7 @@
             <div>
                 <a href="{{ route('dashboard') }}" class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-l transition">Dashboard</a>
                 <a href="/exercises" class="px-4 py-2  text-gray-300 hover:text-orange-600 rounded-l transition">Exercises</a>
+                <a href="{{ route('appointments.myAppointments') }}" class="px-4 py-2  text-gray-300 hover:text-orange-600 rounded-lg transition">Appointments</a>
                 <a href="{{ route('profile.edit') }}" class="px-4 py-2  text-gray-300 hover:text-orange-600 rounded-lg transition">Profile</a>
                 <a href="/workout-planner" class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-lg transition">Workout Planner</a>
                 <a href="/workout/history" class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-lg transition">Workout History</a>
