@@ -24,14 +24,14 @@
                     </div>
                 @endif
 
-                <h2 class="text-xl font-semibold my-6 border-t border-white/20 pt-4">Our Coaches:</h2>
+                <h2 class="text-xl font-semibold mt-6 border-b border-white/20 py-4">Our Coaches:</h2>
 
                 @if ($coaches->isEmpty())
                     <p class="text-gray-100 italic font-light">No coaches available at the moment.</p>
                 @else
-                    <ul class="space-y-4">
+                    <ul>
                         @foreach ($coaches as $coach)
-                            <li class="border-b pb-3 border-white/20">
+                            <li class="border-b py-4 border-white/20">
                                 <div class="flex items-center justify-between">
                                     <button
                                         class="coach-btn text-gray-100 hover:underline cursor-pointer hover:text-orange-600"
