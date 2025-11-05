@@ -32,7 +32,7 @@
                     <ul class="space-y-4">
                         @foreach ($coaches as $coach)
                             <li class="border-b pb-3 border-white/20">
-                                <div class="flex items-center gap-4">
+                                <div class="flex items-center justify-between">
                                     <button
                                         class="coach-btn text-gray-100 hover:underline cursor-pointer hover:text-orange-600"
                                         data-bio="{{ $coach->coach->bio ?? 'This coach has no bio yet.' }}">
