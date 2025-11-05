@@ -6,10 +6,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{'GymWare'}}</title>
+    <link rel="icon" href="{{ asset('images/dumbbell-svgrepo-com.svg') }}" type="image/png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
 
     <!-- Vite (Tailwind + JS) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
