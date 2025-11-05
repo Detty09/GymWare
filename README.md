@@ -1,3 +1,4 @@
+<!-- README TOP -->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -14,10 +15,10 @@
     <img src="public/images/dumbbell-svgrepo-com.svg" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">GymWare</h3>
 
   <p align="center">
-    project_description
+    An awesome all around fitness application.
     <br />
     <a href="https://github.com/CodecoolGlobal/el-proyecte-grande-production-general-peti9406"><strong>Explore the docs »</strong></a>
     <br />
@@ -48,11 +49,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -186,9 +183,12 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Bernadett Kiss - email@email_client.com
+Botond Brindza - email@email_client.com
+Ákos Ilia - email@email_client.com
+Péter Török - p.torok0694@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/github_username/repo_name](https://github.com/CodecoolGlobal/el-proyecte-grande-production-general-peti9406)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
