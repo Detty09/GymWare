@@ -9,7 +9,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white/5 overflow-hidden shadow-sm sm:rounded-lg py-6 px-12 text-gray-100 border border-white/20">
+            <div class="bg-white/5 overflow-hidden shadow-sm rounded-lg py-6 px-12 text-gray-100 border border-white/20">
                 <h1 class="text-3xl font-bold mb-6">
                     Welcome,
                     <span class="text-orange-600">

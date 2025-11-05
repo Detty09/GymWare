@@ -3,7 +3,7 @@
 @section("title", "Exercise details")
 
 @section("content")
-    <div class="max-w-6xl mx-auto py-8">
+    <div class="max-w-6xl mx-auto py-8 px-6">
         <div class="mb-5">
             <a class="" href="/exercises">
                 <x-button
@@ -12,13 +12,16 @@
                 </x-button>
             </a>
         </div>
-        <div class="bg-white/10 border border-white/20 rounded-xl p-6 flex gap-20">
-            <div class="flex flex-col">
-                <div>
-                    <h1 class="text-3xl font-bold mb-4 text-orange-600">{{ ucfirst($exercise['name']) }}</h1>
-                </div>
-                <div class="flex-1 rounded-lg bg-white">
-                    <img src="{{ $exercise['gifUrl'] }}" alt="{{ $exercise['name'] }}" class="h-full w-80 object-contain mb-6">
+        <div class="bg-white/10 border border-white/20 rounded-xl p-6 flex flex-col md:flex-row gap-10">
+            <div class="flex flex-col items-center md:items-start">
+                <h1 class="text-3xl font-bold mb-4 text-orange-600">{{ ucfirst($exercise['name']) }}</h1>
+
+                <div class="rounded-lg bg-white flex justify-center">
+                    <img
+                        src="{{ $exercise['gifUrl'] }}"
+                        alt="{{ $exercise['name'] }}"
+                        class="w-full max-w-xs h-auto object-contain my-6"
+                    >
                 </div>
             </div>
             <div>
