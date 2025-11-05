@@ -27,6 +27,11 @@
                    {{ request()->is('workout/history') ? 'text-orange-600' : '' }}">
                     Workout History
                 </a>
+                <a href="{{ route('appointments.myAppointments') }}"
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   {{ request()->is('my-appointments*') ? 'text-orange-600' : '' }}">
+                    Appointments
+                </a>
                 <a href="/gymmap"
                    class="px-4 py-2 text-gray-300 hover:text-orange-600 transition font-semibold
                    {{ request()->is('gymmap') ? 'text-orange-600' : '' }}">
