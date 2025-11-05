@@ -2,11 +2,12 @@
 <html>
 <head>
     <title>@yield('title', 'GymWare')</title>
+    <link rel="icon" href="{{ asset('images/dumbbell-svgrepo-com.svg') }}" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 </head>
-<body class="min-h-screen flex flex-col bg-white">
+<body class="min-h-screen flex flex-col bg-black">
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<link rel="icon" href="{{ asset('images/dumbbell-svgrepo-com.svg') }}" type="image/png">
+
 
 
 <x-navbar></x-navbar>
