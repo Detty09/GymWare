@@ -44,7 +44,6 @@ class WorkoutPlanController extends Controller
             'user_id' => $userId,
         ]);
 
-
         return redirect('/workout-planner');
     }
 

@@ -15,7 +15,7 @@
     @yield('content')
 </main>
 
-<footer class="w-screen flex justify-start mr-6 bg-black">
+<footer class="w-full flex justify-start mr-6 bg-black">
     <p class="text-gray-300">&copy; {{ date('Y') }} GymWare</p>
 </footer>
 </body>
