@@ -13,8 +13,8 @@
                 <h1 class="text-3xl font-bold mb-6">
                     Welcome,
                     <span class="text-orange-600">
-                    {{ $user->is_coach ? 'Coach ' . $user->name : $user->name }}
-                </span>!
+                        {{ $user->is_coach ? 'Coach ' . $user->name : $user->name }}
+                    </span>!
                 </h1>
 
                 @if ($user->is_coach && $user->coach)
@@ -29,18 +29,23 @@
                 @if ($coaches->isEmpty())
                     <p class="text-gray-100 italic font-light">No coaches available at the moment.</p>
                 @else
-                    <ul class="space-y-2 list-disc list-inside">
+                    <ul class="space-y-4">
                         @foreach ($coaches as $coach)
-                            <li>
-                                <button class="coach-btn" data-bio="{{ $coach->coach->bio ?? 'This coach has no bio yet.' }}">
-                                    <span class="text-gray-100 font-semibold">Coach</span>
-                                    <span class="text-orange-600 font-medium">{{ $coach->name }}</span>
-                                </button>
-                                <a href="{{ route('appointments.create', $coach->coach) }}"
-                                   class="ml-4 px-4 py-2 bg-orange-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-orange-500 hover:scale-105 transition inline-block ease-in-out duration-200">
-                                    Book Appointment
-                                </a>
-                                <p class="coach-bio mt-1 text-gray-100 hidden"></p>
+                            <li class="border-b pb-3">
+                                <div class="flex items-center gap-4">
+                                    <button
+                                        class="coach-btn text-blue-600 font-semibold hover:underline"
+                                        data-bio="{{ $coach->coach->bio ?? 'This coach has no bio yet.' }}">
+                                        Coach {{ $coach->name }}
+                                    </button>
+
+                                    <a href="{{ route('appointments.create', $coach->coach) }}"
+                                       class="px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-green-700 transition">
+                                        Book Appointment
+                                    </a>
+                                </div>
+
+                                <p class="coach-bio mt-2 text-gray-700 hidden"></p>
                             </li>
                         @endforeach
                     </ul>
@@ -53,11 +58,11 @@
         document.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll('.coach-btn');
 
-            buttons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const bioPara = btn.nextElementSibling;
-                    bioPara.textContent = btn.dataset.bio;
-                    bioPara.classList.toggle('hidden');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const bio = button.closest('li').querySelector('.coach-bio');
+                    bio.textContent = button.dataset.bio;
+                    bio.classList.toggle('hidden');
                 });
             });
         });
@@ -65,8 +70,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(async (pos) => {
-                    const {latitude, longitude} = pos.coords;
-
+                    const { latitude, longitude } = pos.coords;
                     localStorage.setItem('user_lat', latitude);
                     localStorage.setItem('user_lng', longitude);
 
@@ -74,7 +78,6 @@
                         const radius = 1000;
                         const res = await fetch(`/gymsdata?lat=${latitude}&lng=${longitude}&radius=${radius}`);
                         const data = await res.json();
-
                         if (data.elements) {
                             localStorage.setItem('cached_gyms', JSON.stringify(data.elements));
                         }
@@ -86,6 +89,5 @@
                 console.warn("Geolocation not supported in this browser.");
             }
         });
-
     </script>
 @endsection
