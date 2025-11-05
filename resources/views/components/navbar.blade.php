@@ -28,7 +28,7 @@
                     Workout History
                 </a>
                 <a href="{{ route('appointments.myAppointments') }}"
-                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition font-semibold
                    {{ request()->is('my-appointments*') ? 'text-orange-600' : '' }}">
                     Appointments
                 </a>
