@@ -1,20 +1,20 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('content')
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-6">Book Appointment with {{$coach->user->name}}</h1>
-        <form method="POST" action="{{route('appointments.store')}}" class="max-w-md bg-white p-6 rounded-lg shadow-md">
+    <div class="flex flex-col justify-center items-center px-4 py-8 text-gray-100">
+        <h1 class="text-3xl font-bold mb-6 text-orange-600">Book Appointment with {{$coach->user->name}}</h1>
+        <form method="POST" action="{{route('appointments.store')}}" class="w-full bg-white/5 p-6 rounded-lg shadow-md border border-white/20">
             @csrf
             <input type="hidden" name="coach_id" value="{{$coach->id}}">
 
             <div class="mb-4">
                 <label class="block mb-2 font-semibold">Date:</label>
-                <input type="date" name="date" min="{{date('Y-m-d')}}" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="date" name="date" min="{{date('Y-m-d')}}" required class="w-full px-4 py-2 border border-white/20 rounded-lg focus:outline-none focus:ring focus:ring-orange-600">
                 @error('date') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
 
             <div class="mb-4">
                 <label class="block mb-2 font-semibold">Time:</label>
-                <select name="time" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <select name="time" required class="w-full px-4 py-2 border border-white/20 rounded-lg focus:outline-none focus:ring-1 focus:ring-orange-600">
                     <option value="">Select a time</option>
                     @for($hour = 6; $hour <= 21; $hour++)
                         @foreach(['00', '30'] as $minute)
@@ -30,7 +30,7 @@
 
             <div class="mb-6">
                 <label class="block mb-2 font-semibold">Duration (minutes):</label>
-                <select name="duration" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <select name="duration" required class="w-full px-4 py-2 border border-white/20 rounded-lg focus:outline-none focus:ring focus:ring-orange-600">
                     <option value="60">1 hour</option>
                     <option value="90">1.5 hours</option>
                     <option value="120">2 hours</option>
@@ -39,8 +39,8 @@
             </div>
 
             <div class="flex gap-4">
-                <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Book Appointment</button>
-                <a href="{{route('coaches.show', $coach)}}" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition">Cancel</a>
+                <button type="submit" class="inline-flex items-center px-4 py-2 bg-orange-600 border border-transparent rounded-lg font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-500 hover:scale-105 focus:bg-orange-400 active:bg-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 transition ease-in-out duration-200">Book Appointment</button>
+                <a href="{{route('dashboard')}}" class="inline-flex items-center px-4 py-2 border border-orange-600 rounded-lg font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-500 hover:border-orange-500 hover:scale-105 focus:bg-orange-400 active:bg-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 transition ease-in-out duration-200">Cancel</a>
             </div>
         </form>
     </div>
