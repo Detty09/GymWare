@@ -1,17 +1,15 @@
-@extends('layouts.plan')
+@extends('layouts.main')
 
 @section('title', 'Exercise Catalog')
 
 @section('content')
 
     <div class="max-w-6xl min-w-6xl mx-auto py-8">
-        <div class="mb-2">
-            <h1 class="text-3xl font-bold mb-6">Add exercise to {{$plan['name']}}</h1>
-            <a href="/workout-planner/edit/{{ $plan['id'] }}">
-                <x-button
-                    class="justify-center bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900">
-                    Back to {{ $plan['name'] }} template
-                </x-button>
+        <div class="mb-5">
+            <h1 class="text-2xl font-semibold mb-6 text-gray-100">Add exercise to <span class="text-orange-600 font-bold text-3xl">{{$plan['name']}}</span> workout</h1>
+            <a href="/workout-planner/edit/{{ $plan['id'] }}" class="text-orange-600 mb-4 inline-block hover:text-white hover:scale-102 items-center gap-2 transition ease-in-out duration-100">
+                <i class="fas fa-left-long"></i>
+                <span>Back to workout template</span>
             </a>
         </div>
 

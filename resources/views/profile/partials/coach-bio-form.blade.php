@@ -1,11 +1,11 @@
 @if ($user->is_coach)
     <section>
         <header>
-            <h2 class="text-lg font-medium text-gray-900">
+            <h2 class="text-lg font-medium text-orange-600">
                 {{ __('Coach Bio') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-sm text-gray-100">
                 {{ __("Update your coach bio to let others know about your experience and specialties.") }}
             </p>
         </header>
@@ -17,7 +17,7 @@
             <div>
                 <x-input-label for="bio" :value="__('Your Bio')" />
                 <textarea id="bio" name="bio" rows="4"
-                          class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                          class="block w-full mt-1 border px-2 py-1 border-white/20 rounded-md shadow-sm text-sm focus:outline-none focus:ring-1 focus:ring-orange-600"
                           placeholder="Write a short description of your coaching experience...">{{ old('bio', $coach->bio ?? '') }}</textarea>
                 <x-input-error :messages="$errors->get('bio')" class="mt-2" />
             </div>

@@ -11,7 +11,8 @@ use Illuminate\Support\Carbon;
 
 class WorkoutService
 {
-    private float $CHART_MODIFIER = 1.1;
+    private float $MAX_CHART_STEP = 10;
+    private float $TOTAL_CHART_STEP = 200;
     protected WorkoutRepository $workoutRepository;
     protected WorkoutDetailRepository $workoutDetailRepository;
     protected WorkoutPlanRepository $workoutPlanRepository;
@@ -156,8 +157,8 @@ class WorkoutService
         $labels = $this->getLabels($workouts['workouts']);
 
         $datasets = $this->getData($exerciseMaxWeights, $labels);
-        $yMax = $this->getYMax($exerciseMaxWeights) * $this->CHART_MODIFIER;
-        $options = $this->getOptions($yMax);
+        $yMax = ceil($this->getYMax($exerciseMaxWeights) / $this->MAX_CHART_STEP) * $this->MAX_CHART_STEP + $this->MAX_CHART_STEP;
+        $options = $this->getOptions($yMax, $this->MAX_CHART_STEP);
 
         $chart = Chartjs::build()
             ->name("WorkoutProgressionChart")
@@ -220,7 +221,7 @@ class WorkoutService
         return $labels;
     }
 
-    private function getOptions(int $yMax): array
+    private function getOptions(int $yMax, int $step = 10): array
     {
         return [
             'scales' => [
@@ -238,6 +239,7 @@ class WorkoutService
                     'ticks' => [
                         'beginAtZero' => true,
                         'max' => $yMax,
+                        'stepSize' => $step,
                     ],
                     'scaleLabel' => [
                         'display' => true,
@@ -287,9 +289,9 @@ class WorkoutService
         $labels = array_keys($data);
         $totalWeights = array_values($data);
 
-        $datasets = $this->getDataForTotalWeights($totalWeights, $labels);
-        $yMax = max($totalWeights) * $this->CHART_MODIFIER;
-        $options = $this->getOptions($yMax);
+        $datasets = $this->getDataForTotalWeights($totalWeights);
+        $yMax = ceil(max($totalWeights) / $this->TOTAL_CHART_STEP) * $this->TOTAL_CHART_STEP + $this->TOTAL_CHART_STEP;
+        $options = $this->getOptions($yMax, $this->TOTAL_CHART_STEP);
 
         $chart = Chartjs::build()
             ->name("WorkoutProgressionChart")
@@ -304,7 +306,6 @@ class WorkoutService
 
     private function getDataForTotalWeights(array $totalWeights): array
     {
-        $bgColors = $this->getRandomColors($totalWeights);
 
         return [[
             'label' => 'Total Weight',
@@ -312,7 +313,7 @@ class WorkoutService
             'fill' => false,
             'borderColor' => 'rgba(0, 0, 0, 0.9)',
             'borderWidth' => 1,
-            'backgroundColor' => $bgColors,
+            'backgroundColor' => 'rgba(234, 90, 21, 1)',
         ]];
     }
 

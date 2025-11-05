@@ -1,13 +1,13 @@
-<table class="mt-2 border-2">
+<table class="mt-2 border">
     <thead>
-    <tr class="font-bold">
-        <td class="border-1 px-4">
+    <tr class="font-light">
+        <td class="border px-4 text-center border-gray-500">
             #
         </td>
-        <td class="border-1 px-4">
+        <td class="border px-4 border-gray-500">
             Weight (Kg)
         </td>
-        <td class="border-1 px-4">
+        <td class="border px-4 border-gray-500">
             Repetition
         </td>
     </tr>

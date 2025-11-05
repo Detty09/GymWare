@@ -6,8 +6,11 @@ use App\Models\WorkoutPlan;
 use App\Services\ExerciseDBService;
 use App\Services\WorkoutPlanService;
 use App\Services\WorkoutService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Str;
 
 class WorkoutController extends Controller
 {
@@ -89,12 +92,15 @@ class WorkoutController extends Controller
                 'error' => 'You have to complete at least 2 of this workout to check progression!'
             ]);
         }
+
         $chart = $request->query("chart") ?? 'max-lifts';
 
         if ($chart === 'max-lifts') {
             $chart = $this->workoutService->getMaxLiftsChart($workouts);
+            $chartType = 'max-lifts';
         } else if ($chart === 'total-weight') {
             $chart = $this->workoutService->getTotalWeightsChart($id);
+            $chartType = 'total-weight';
         } else {
             $plan = $this->workoutPlanService->getWorkoutPlanById($id);
             return view('workout.progression', [
@@ -107,8 +113,49 @@ class WorkoutController extends Controller
         return view('workout.progression', [
             'plan' => $workouts['name'],
             'id' => $id,
-            'chart' => $chart
+            'chart' => $chart,
+            'chartType' => $chartType
         ]);
+    }
+
+    public function downloadChart(Request $request)
+    {
+        $base64 = $request->input('image');
+        $plan = $request->input('plan', 'Workout');
+
+        $imageData = str_replace('data:image/png;base64,', '', $base64);
+        $imageData = str_replace(' ', '+', $imageData);
+        $image = base64_decode($imageData);
+
+        $path = storage_path('app/public/chart.png');
+        file_put_contents($path, $image);
+
+        $pdf = Pdf::loadView('workout.chart-pdf', [
+            'imagePath' => $path,
+            'plan' => $plan,
+        ])->setPaper('a4', 'landscape');
+
+        return Response::make($pdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="chart.pdf"',
+        ]);
+    }
+
+    public function download(string $id)
+    {
+        $plan = $this->workoutPlanService->getWorkoutPlanById($id);
+
+        if (empty($plan['exercises'])) {
+            return redirect('/workout-planner/edit/' . $id);
+        }
+
+        $plan = $this->exerciseDBService->getExercisesForPlan($plan);
+        $pdf = Pdf::loadView('workout.create-pdf', [
+            'plan' => $plan,
+        ])->setPaper('a4', );
+
+        $filename = Str::slug($plan['name'], '_') . '.pdf';
+        return $pdf->download($filename);
     }
 
 }

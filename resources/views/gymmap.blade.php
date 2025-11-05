@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nearby Gyms Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="icon" href="{{ asset('images/dumbbell-svgrepo-com.svg') }}" type="image/png">
     <style>
         body { margin: 0; font-family: Arial, sans-serif; }
         #map { height: 100vh; width: 100%; }
@@ -22,9 +23,9 @@
             gap: 10px;
             align-items: center;
         }
-        .back {
+        .back, button {
             display: inline-block;
-            background-color: orange;
+            background-color: #ea580c;
             color: white;
             padding: 8px 16px;
             border-radius: 8px;
@@ -33,19 +34,16 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        .back:hover {
-            background-color: #ea580c;
+        .back:hover, button:hover {
+            background-color: #f97316;
             transform: translateY(-2px);
         }
 
         .back:active {
             transform: translateY(0);
         }
-        select, button { padding:5px 10px; background: orange; color:white; border-radius:6px; cursor:pointer;}
-         button:hover {
-            background-color:#ea580c;;
-            color: white;
-        }
+        select { padding:5px 10px; background: rgb(256,256,256,0.1); color:white; border-color:rgb(256,256,256,0.2); border-radius:6px; cursor:pointer;}
+
         .label { background:white; border:1px solid #999; border-radius:6px; padding:2px 4px; font-size:12px; pointer-events:none; }
     </style>
 </head>
@@ -59,7 +57,7 @@
             <option value="5000">5 km</option>
         </select>
     </label>
-    <button id="searchBtn" >🔄 Search Again</button>
+    <button id="searchBtn">Search Again</button>
     <span id="status">Loading...</span>
     <a href="{{ route('dashboard') }}" class="back">Back</a>
 

@@ -1,14 +1,18 @@
-@extends("layouts.plan")
+@extends("layouts.main")
 
-@section("title", "Exercise details"))
+@section("title", "Exercise details")
 
 @section("content")
     <div class="max-w-6xl mx-auto py-8">
-        <a href="/exercises" class="text-orange-600 mb-4 inline-block hover:text-white hover:scale-102 items-center gap-2 transition ease-in-out duration-100">
-            <i class="fas fa-left-long"></i>
-            <span>Back to catalog</span>
-        </a>
-        <div class="bg-white/10 border border-gray-700 rounded-xl p-6 flex gap-20">
+        <div class="mb-5">
+            <a class="" href="/exercises">
+                <x-button
+                    class="mt-6 justify-center bg-orange-600 border border-orange-600 hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-transform ease-in-out duration-200">
+                    Back to the Catalog
+                </x-button>
+            </a>
+        </div>
+        <div class="bg-white/10 border border-white/20 rounded-xl p-6 flex gap-20">
             <div class="flex flex-col">
                 <div>
                     <h1 class="text-3xl font-bold mb-4 text-orange-600">{{ ucfirst($exercise['name']) }}</h1>
@@ -18,7 +22,7 @@
                 </div>
             </div>
             <div>
-                <div class="border-b-1 border-gray-600 pb-3">
+                <div class="border-b-1 border-white/20 pb-3">
                     <p class="text-gray-100 mb-2 text-md font-light"><span class="font-bold">Body Parts:</span> {{ implode(', ', $exercise['bodyParts'] ?? []) }}</p>
                     <p class="text-gray-100 mb-2 text-md font-light"><span class="font-bold">Target Muscles:</span> {{ implode(', ', $exercise['targetMuscles'] ?? []) }}</p>
                     <p class="text-gray-100 mb-2 text-md font-light"><span class="font-bold">Secondary Muscles:</span> {{ implode(', ', $exercise['secondaryMuscles'] ?? []) }}</p>

@@ -1,15 +1,37 @@
 <div>
-    <div class="hidden space-x-4 sm:flex sm:items-center p-2 bg-[#141414] border-b border-gray-700 sm:justify-between">
+    <div class="hidden space-x-4 sm:flex sm:items-center p-2 bg-[#141414] border-b border-white/20 sm:justify-between">
         @auth
             <div>
-                <a href="{{ route('dashboard') }}" class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-l transition">Dashboard</a>
-                <a href="/exercises" class="px-4 py-2  text-gray-300 hover:text-orange-600 rounded-l transition">Exercises</a>
-                <a href="{{ route('appointments.myAppointments') }}" class="px-4 py-2  text-gray-300 hover:text-orange-600 rounded-lg transition">Appointments</a>
-                <a href="{{ route('profile.edit') }}" class="px-4 py-2  text-gray-300 hover:text-orange-600 rounded-lg transition">Profile</a>
-                <a href="/workout-planner" class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-lg transition">Workout Planner</a>
-                <a href="/workout/history" class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-lg transition">Workout History</a>
-                <a href="/gymmap" class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-lg transition">Nearby
-                Gyms</a>
+                <a href="{{ route('dashboard') }}"
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   {{ request()->is('dashboard') ? 'text-orange-600' : '' }}">
+                    Dashboard
+                </a>
+                <a href="/exercises"
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 rounded-l transition
+                   {{ request()->is('exercises*') ? 'text-orange-600' : '' }}">
+                    Exercises
+                </a>
+                <a href="{{ route('profile.edit') }}"
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   {{ request()->is('profile*') ? 'text-orange-600' : '' }}">
+                    Profile
+                </a>
+                <a href="/workout-planner"
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   {{ request()->is('workout-planner*') ? 'text-orange-600' : '' }}">
+                    Workout Planner
+                </a>
+                <a href="/workout/history"
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   {{ request()->is('workout/history') ? 'text-orange-600' : '' }}">
+                    Workout History
+                </a>
+                <a href="/gymmap"
+                   class="px-4 py-2 text-gray-300 hover:text-orange-600 transition
+                   {{ request()->is('gymmap') ? 'text-orange-600' : '' }}">
+                    Nearby Gyms
+                </a>
             </div>
             <div>
                 <form method="POST" action="{{ route('logout') }}">
