@@ -17,6 +17,7 @@ services:
       - DB_DATABASE=laravel
       - DB_USERNAME=laravel
       - DB_PASSWORD=secret
+    command: php artisan serve --host=0.0.0.0 --port=80
 
   db:
     image: mysql:8.0
