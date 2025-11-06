@@ -7,10 +7,10 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white/5 overflow-hidden shadow-sm rounded-lg py-6 px-12 text-gray-100 border border-white/20">
-                <h1 class="text-3xl font-bold mb-6">
+    <div class="py-12 w-full max-w-2xl">
+        <div class="max-w-7xl lg:px-8">
+            <div class="bg-white/5 overflow-hidden shadow-sm sm:rounded-lg py-6 px-4 sm:px-12 text-gray-100 border border-white/20">
+                <h1 class="text-3xl font-bold mb-6 text-center">
                     Welcome,
                     <span class="text-orange-600">
                         {{ $user->is_coach ? 'Coach ' . $user->name : $user->name }}

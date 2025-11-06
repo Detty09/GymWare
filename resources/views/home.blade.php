@@ -3,7 +3,7 @@
 @section('title', 'Home Page')
 
 @section('content')
-    <div class="max-w-2xl w-full bg-transparent rounded-lg p-4 flex flex-col items-center space-y-6">
+    <div class="max-w-2xl w-full bg-transparent sm:rounded-lg p-4 flex flex-col items-center space-y-6">
         <h1 class="text-3xl font-bold text-white">Welcome to GymWare!</h1>
         <p class="text-white text-center">
             You can log in or register to continue.

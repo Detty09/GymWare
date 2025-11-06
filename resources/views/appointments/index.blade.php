@@ -1,9 +1,9 @@
 @extends('layouts.main')
 @section('content')
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="bg-white/5 border border-white/20 shadow-sm rounded-xl py-6 px-10">
-                <h1 class="text-3xl font-bold mb-6 text-orange-600">My Appointments</h1>
+    <div class="py-12 w-screen">
+        <div class="max-w-7xl mx-auto sm:px-4 md:px-6 flex justify-center">
+            <div class="bg-white/5 max-w-4xl border border-white/20 shadow-sm sm:rounded-xl py-6 px-2 sm:px-4 md:px-10 w-full overflow-hidden">
+                <h1 class="text-3xl font-bold mb-6 text-orange-600 text-center sm:text-start">My Appointments</h1>
 
                 @if(session('success'))
                     <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-xl">

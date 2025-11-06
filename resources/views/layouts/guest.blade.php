@@ -27,7 +27,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 
 </head>
-<body class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+<body class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-2 bg-gray-100">
 
 <video autoplay muted loop playsinline class="fixed top-0 left-0 w-full h-full object-cover">
     <source src="{{ asset('videos/login_background.mp4') }}" type="video/mp4">
@@ -43,7 +43,7 @@
 </div>
 
 <!-- Main Content -->
-<div class="relative z-10 w-full sm:max-w-md px-6 py-4 bg-[#141414]/90 border border-gray-800 shadow-md overflow-hidden rounded-xl">
+<div class="relative z-10 w-full sm:max-w-md px-6 py-4 bg-[#141414]/90 border border-gray-800 shadow-md overflow-hidden sm:rounded-xl">
     @yield('content')
 </div>
 
