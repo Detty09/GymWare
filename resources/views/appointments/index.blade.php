@@ -18,12 +18,24 @@
                         <table class="min-w-full divide-y divide-white/20 text-center">
                             <thead class="bg-white/20">
                             <tr>
-                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">Coach</th>
-                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">Date</th>
-                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">Time</th>
-                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">Duration</th>
-                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">Status</th>
-                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">Actions</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">
+                                    Coach
+                                </th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">
+                                    Date
+                                </th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">
+                                    Time
+                                </th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">
+                                    Duration
+                                </th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">
+                                    Status
+                                </th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-100 uppercase tracking-wider">
+                                    Actions
+                                </th>
                             </tr>
                             </thead>
                             <tbody class="bg-white/10 divide-y divide-white/20">
@@ -32,7 +44,9 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">{{$appointment->coach->user->name}}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-100">{{$appointment->date->format('M d, Y')}}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-100">{{ \Carbon\Carbon::parse($appointment->time)->format('H:i') }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-100">{{$appointment->duration}} min</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-100">{{$appointment->duration}}
+                                        min
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                                             {{ $appointment->status === 'confirmed' ? 'bg-green-100 text-green-800' : '' }}
@@ -43,14 +57,19 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         @if($appointment->status === 'pending')
-                                            <form method="POST" action="{{route('appointments.cancel', $appointment)}}">
+                                            <form method="POST" action="{{route('appointments.cancel', $appointment)}}" class="delete-form">
                                                 @csrf
                                                 @method('PATCH')
-                                                <button type="submit"
+                                                <button type="button"
+                                                        onclick="openConfirmModal(event)"
                                                         class="inline-flex items-center px-4 py-2 bg-orange-600 border border-transparent rounded-lg font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-500 hover:scale-105 focus:bg-orange-400 active:bg-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 transition ease-in-out duration-200">
                                                     Cancel
                                                 </button>
                                             </form>
+
+                                            <x-confirm-modal question="Are you sure you want to cancel this appointment?"
+                                                             confirm="Yes, cancel"
+                                            ></x-confirm-modal>
                                         @endif
                                     </td>
                                 </tr>
@@ -62,4 +81,5 @@
             </div>
         </div>
     </div>
+
 @endsection
