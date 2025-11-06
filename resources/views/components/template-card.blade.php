@@ -44,19 +44,31 @@
         </span>
         </div>
 
-        <form method="POST" action="/workout/download/{{ $plan['id'] }}">
-            @csrf
+        @if (Auth::user()->subscription)
+            <form method="POST" action="/workout/download/{{ $plan['id'] }}">
+                @csrf
 
+                <div class="relative group inline-block">
+                    <button type="submit" class="cursor-pointer text-xl text-orange-600 hover:text-gray-100">
+                        <i class="fa-solid fa-file-export"></i>
+                    </button>
+                    <span
+                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    Download Template PDF
+                </span>
+                </div>
+            </form>
+        @else
             <div class="relative group inline-block">
-                <button type="submit" class="cursor-pointer text-xl text-orange-600 hover:text-gray-100">
+                <button disabled type="submit" class="opacity-50 cursor-not-allowed text-xl text-orange-600 hover:text-gray-100">
                     <i class="fa-solid fa-file-export"></i>
                 </button>
                 <span
                     class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    Download Template PDF
+                    Subscription Required
                 </span>
             </div>
-        </form>
+        @endif
 
         <form method="POST" action="/workout-planner/{{ $plan['id'] }}">
             @csrf

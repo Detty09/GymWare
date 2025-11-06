@@ -27,6 +27,15 @@
                         @endif
                     </div>
                 </div>
+
+                @if (session('error'))
+                    <div class="text-center bg-[#141414]/90 border border-white/20 text-gray-100 space-y-6 p-5 rounded-xl">
+                        <p class="text-red-600">
+                            {{ session('error') }}
+                        </p>
+                    </div>
+                @endif
+
                 <div class="flex flex-col items-center bg-[#141414]/90 border border-white/20 text-gray-100 space-y-6 p-5 rounded-xl">
                     <h1 class="font-semibold text-xl">Create new workout plan</h1>
 
