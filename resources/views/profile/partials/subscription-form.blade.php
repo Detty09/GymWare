@@ -39,11 +39,15 @@
             </div>
         </form>
 
-        <form method="POST" action="{{ route('profile.subscription.cancel') }}" class="mt-4">
+        <form method="POST" action="{{ route('profile.subscription.cancel') }}" class="mt-4" class="delete-form">
             @csrf
             @method('DELETE')
-            <x-danger-button>Cancel Subscription</x-danger-button>
+            <x-danger-button type="button" onclick="openConfirmModal(event)">Cancel Subscription</x-danger-button>
         </form>
+
+        <x-confirm-modal question="Are you sure you want to cancel your subscription?"
+                         confirm="Cancel"
+        ></x-confirm-modal>
     </section>
 @endif
 <script>
