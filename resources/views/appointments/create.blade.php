@@ -15,13 +15,13 @@
             <div class="mb-4">
                 <label class="block mb-2 font-semibold">Time:</label>
                 <select name="time" required class="w-full px-4 py-2 border border-white/20 rounded-lg focus:outline-none focus:ring-1 focus:ring-orange-600">
-                    <option value="">Select a time</option>
+                    <option class="text-black" value="">Select a time</option>
                     @for($hour = 6; $hour <= 21; $hour++)
                         @foreach(['00', '30'] as $minute)
                             @php
                                 $time = sprintf('%02d:%s', $hour, $minute);
                             @endphp
-                            <option value="{{ $time }}">{{ $time }}</option>
+                            <option class="text-black" value="{{ $time }}">{{ $time }}</option>
                         @endforeach
                     @endfor
                 </select>
@@ -31,9 +31,9 @@
             <div class="mb-6">
                 <label class="block mb-2 font-semibold">Duration (minutes):</label>
                 <select name="duration" required class="w-full px-4 py-2 border border-white/20 rounded-lg focus:outline-none focus:ring focus:ring-orange-600">
-                    <option value="60">1 hour</option>
-                    <option value="90">1.5 hours</option>
-                    <option value="120">2 hours</option>
+                    <option class="text-black" value="60">1 hour</option>
+                    <option class="text-black" value="90">1.5 hours</option>
+                    <option class="text-black" value="120">2 hours</option>
                 </select>
                 @error('duration') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
