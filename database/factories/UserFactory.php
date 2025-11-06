@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Coach;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -29,9 +30,20 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'is_coach' => fake()->boolean(),
-            'subscribed' => fake()->boolean(),
+            'subscription' => fake()->boolean(),
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function coach(): static
+    {
+        return $this->afterCreating(function ($user) {
+            Coach::factory()->create([
+                'user_id' => $user->id,
+            ]);
+        })->state(fn (array $attributes) => [
+            'is_coach' => true,
+        ]);
     }
 
     /**
@@ -39,7 +51,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }
