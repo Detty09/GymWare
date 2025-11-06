@@ -1,12 +1,6 @@
 <!-- README TOP -->
 <div id="readme-top"></div>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![project_license][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 
@@ -175,9 +169,7 @@ Or if you want it to run with docker:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+Under work!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
