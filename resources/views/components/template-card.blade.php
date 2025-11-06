@@ -93,7 +93,7 @@
                 <div class="flex justify-center gap-4">
                     <button onclick="confirmDelete()"
                             class="bg-red-600 hover:bg-red-400 px-4 py-2 rounded-lg">
-                        Yes, delete
+                        Delete
                     </button>
                     <x-button type="button"
                               onclick="closeConfirmModal()"
