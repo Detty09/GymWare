@@ -44,26 +44,39 @@
         </span>
         </div>
 
-        <form method="POST" action="/workout/download/{{ $plan['id'] }}">
-            @csrf
+        @if (Auth::user()->subscription)
+            <form method="POST" action="/workout/download/{{ $plan['id'] }}">
+                @csrf
 
+                <div class="relative group inline-block">
+                    <button type="submit" class="cursor-pointer text-xl text-orange-600 hover:text-gray-100">
+                        <i class="fa-solid fa-file-export"></i>
+                    </button>
+                    <span
+                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    Download Template PDF
+                </span>
+                </div>
+            </form>
+        @else
             <div class="relative group inline-block">
-                <button type="submit" class="cursor-pointer text-xl text-orange-600 hover:text-gray-100">
+                <button disabled type="submit" class="opacity-50 cursor-not-allowed text-xl text-orange-600 hover:text-gray-100">
                     <i class="fa-solid fa-file-export"></i>
                 </button>
                 <span
                     class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    Download Template PDF
+                    Subscription Required
                 </span>
             </div>
-        </form>
+        @endif
 
-        <form method="POST" action="/workout-planner/{{ $plan['id'] }}">
+        <form method="POST" action="/workout-planner/{{ $plan['id'] }}" class="delete-form">
             @csrf
             @method('DELETE')
 
             <div class="relative group inline-block border-l border-white/20 pl-3">
-                <button type="submit" class="cursor-pointer text-xl text-red-600 hover:text-red-400">
+                <button type="button" class="cursor-pointer text-xl text-red-600 hover:text-red-400"
+                onclick="openConfirmModal(event)">
                     <i class="fa-solid fa-trash"></i>
                 </button>
                 <span
@@ -72,7 +85,45 @@
                 </span>
             </div>
         </form>
+
+        <div id="confirmModal"
+             class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div class="text-gray-100 bg-[#141414] border border-white/20 py-5 rounded-xl w-80 text-center">
+                <p class="mb-4 text-lg">Are you sure you want to delete this template?</p>
+                <div class="flex justify-center gap-4">
+                    <button onclick="confirmDelete()"
+                            class="bg-red-600 hover:bg-red-400 px-4 py-2 rounded-lg">
+                        Yes, delete
+                    </button>
+                    <x-button type="button"
+                              onclick="closeConfirmModal()"
+                              class="justify-center bg-transparent border border-orange-600 hover:border-orange-500 hover:bg-orange-500 hover:scale-105 transition-transform ease-in-out duration-200">
+                        Cancel
+                    </x-button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<script>
+    let currentForm = null;
+
+    function openConfirmModal(event) {
+        event.preventDefault();
+        currentForm = event.target.closest('form');
+        document.getElementById('confirmModal').classList.remove('hidden');
+    }
+
+    function closeConfirmModal() {
+        document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    function confirmDelete() {
+        if (currentForm) {
+            currentForm.submit();
+        }
+    }
+</script>
 
 

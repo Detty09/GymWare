@@ -120,6 +120,14 @@ class WorkoutController extends Controller
 
     public function downloadChart(Request $request)
     {
+        $subscribed = Auth::user()->subscription;
+
+        if (!$subscribed) {
+            $id = $request->input('id');
+            return redirect('/workout/progression/' . $id)
+                ->with('error', 'You have to be subscribed to download the progression chart!');
+        }
+
         $base64 = $request->input('image');
         $plan = $request->input('plan', 'Workout');
 
@@ -143,6 +151,13 @@ class WorkoutController extends Controller
 
     public function download(string $id)
     {
+        $subscribed = Auth::user()->subscription;
+
+        if (!$subscribed) {
+            return redirect('/workout-planner')
+                ->with('error', 'You have to be subscribed to download the workout template!');
+        }
+
         $plan = $this->workoutPlanService->getWorkoutPlanById($id);
 
         if (empty($plan['exercises'])) {
@@ -152,7 +167,7 @@ class WorkoutController extends Controller
         $plan = $this->exerciseDBService->getExercisesForPlan($plan);
         $pdf = Pdf::loadView('workout.create-pdf', [
             'plan' => $plan,
-        ])->setPaper('a4', );
+        ])->setPaper('a4');
 
         $filename = Str::slug($plan['name'], '_') . '.pdf';
         return $pdf->download($filename);
