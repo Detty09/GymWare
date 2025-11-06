@@ -44,18 +44,39 @@
             </a>
 
             @if (isset($chart))
-                <div class="flex justify-end w-3/4">
-                    <x-button type="button" id="download"
-                              class="my-6 bg-orange-600 border border-orange-600 hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-transform ease-in-out duration-200">
-                        Download Chart
-                    </x-button>
-                </div>
+                @if (Auth::user()->subscription)
+                    <div class="flex justify-end w-3/4">
+                        <x-button type="button" id="download"
+                                  class="my-6 bg-orange-600 border border-orange-600 hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-transform ease-in-out duration-200">
+                            Download Chart
+                        </x-button>
+                    </div>
+                @else
+                    <div class="flex justify-end w-3/4">
+                        <div class="relative group inline-block">
+                            <x-button type="button" id="download" disabled
+                                      class="opacity-50 cursor-not-allowed my-6 bg-orange-600 border border-orange-600 hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-transform ease-in-out duration-200">
+                                Download Chart
+                            </x-button>
+                            <span
+                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                Subscription Required
+                            </span>
+                        </div>
+                    </div>
+                @endif
             @endif
         </div>
 
+        @if (session('error'))
+            <div class="text-center bg-[#141414]/90 border border-white/20 text-gray-100 space-y-6 p-5 rounded-xl">
+                <p class="text-red-600">
+                    {{ session('error') }}
+                </p>
+            </div>
+        @endif
+
         @if (isset($chart))
-
-
             <div class="w-3/4 bg-gray-200 border border-white/20 p-6 rounded-xl">
                 <h1 class="text-center text-3xl font-bold mb-6 text-black">Progression of {{$plan}}</h1>
                 <x-chartjs-component :chart="$chart"/>
@@ -77,7 +98,8 @@
                 },
                 body: JSON.stringify({
                     image: image,
-                    plan: '{{ $plan }}'
+                    plan: '{{ $plan }}',
+                    id: '{{$id}}'
                 })
             });
 
