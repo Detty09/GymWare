@@ -12,7 +12,7 @@
         <div class="absolute inset-0 bg-black/80"></div>
 
         <div class="relative flex justify-center p-10">
-            <div class="flex flex-col items-center text-gray-100 bg-[#141414]/90 max-w-7xl px-20 py-10 mt-6 rounded-xl border border-white/20">
+            <div class="flex flex-col items-center text-gray-100 bg-[#141414]/90 max-w-7xl px-10 sm:px-20 py-10 mt-6 rounded-xl border border-white/20">
                 <h1 class="text-3xl mb-5 font-semibold">Workout History</h1>
 
                 @if (empty($data))
