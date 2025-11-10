@@ -86,6 +86,7 @@ Core Features:
 
 You can run the project with docker or on your own computer.
 Please follow the instructions.
+Currently, this is only a test environment.
 
 ### Prerequisites
 
@@ -101,33 +102,36 @@ Or if you want it to run with docker:
 
 #### Run with Docker
 
-1. Clone the repo
+1. Clone the repository
    ```sh
    git clone https://github.com/CodecoolGlobal/el-proyecte-grande-production-general-peti9406.git
+   cd el-proyecte-grande-production-general-peti9406
    ```
-2. Create .env from the .env.example
-
-3. Open a console and navigate to the project root folder.
+2. Create the environment file
+    ```sh
+    cp .env.example .env
+   ```
+3. Build the Docker containers
    ```sh
-   docker-compose build
+   docker compose build
    ```
 4. Start the containers in detached mode.
    ```sh
-   docker-compose up -d
+   docker compose up -d
    ```
 5. Access the application container.
    ```sh
-   docker exec -it GymWare bash
+   docker exec -it gymware_app bash
    ```
 6. Install Composer packages.
    ```sh
    composer install
    ```
-7. Generate the encryption key required for the application to run securely.
+7. Generate the application key
    ```sh
    php artisan key:generate
    ```
-8. Create the database tables based on the migration files.
+8. Run the database migrations
    ```sh
    php artisan migrate
    ```
@@ -136,12 +140,15 @@ Or if you want it to run with docker:
 
 #### Run locally
 
-1. Clone the repo
+1. Clone the repository
    ```sh
    git clone https://github.com/CodecoolGlobal/el-proyecte-grande-production-general-peti9406.git
+   cd el-proyecte-grande-production-general-peti9406
    ```
-2. Create .env from the .env.example   
-
+2. Create the environment file
+    ```sh
+    cp .env.example .env
+   ```
 3. Install Composer packages
    ```sh
    composer install

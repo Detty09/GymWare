@@ -1,49 +1,31 @@
-# ---- 1️⃣ PHP + Apache alap ----
-FROM php:8.2-apache AS app
+# Use an official PHP 8.2 image with necessary extensions
+FROM php:8.2-cli
 
-# Rendszerfüggőségek + PHP kiterjesztések
+# Install system dependencies required for Laravel and PHP extensions
 RUN apt-get update && apt-get install -y \
-    git unzip libpng-dev libonig-dev libxml2-dev curl \
+    git unzip libpng-dev libonig-dev libxml2-dev libzip-dev curl nodejs npm \
     && docker-php-ext-install pdo_mysql
 
-# Apache rewrite engedélyezése
-RUN a2enmod rewrite
-
-# Composer bemásolása
+# Copy Composer from the official composer image
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Munkakönyvtár
+# Set working directory inside the container
 WORKDIR /var/www/html
 
-# Laravel fájlok másolása
+# Configure Git to trust the project directory to avoid "dubious ownership" warnings
+RUN git config --global --add safe.directory /var/www/html
+
+# Copy all project files into the container
 COPY . .
 
-# Függőségek telepítése
-RUN composer install --no-dev --optimize-autoloader
+# Install PHP dependencies using Composer
+RUN composer install
 
-# Storage és cache mappák jogosultsága
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Install Node.js dependencies and build assets (optional for production)
+RUN npm install && npm run build
 
-# Public mappára mutasson az Apache
-RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
-
-# Port megnyitása
+# Expose port 80 so the Laravel dev server is accessible
 EXPOSE 80
 
-# ---- 2️⃣ Node / Vite build ----
-FROM node:20 AS frontend
-
-WORKDIR /app
-COPY package*.json vite.config.js ./
-RUN npm install
-COPY resources ./resources
-RUN npm run build
-
-# ---- 3️⃣ Production image ----
-FROM app AS final
-
-# Buildelt frontend másolása
-COPY --from=frontend /app/public/build ./public/build
-
-# Default indítás
-CMD ["apache2-foreground"]
+# Start Laravel's built-in development server
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]
