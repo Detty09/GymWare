@@ -56,8 +56,8 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-The Fitness App is a comprehensive, all-in-one platform designed to help users improve their health, stay motivated, and reach their fitness goals. It combines exercise planning, progress tracking, nutrition management, and trainer support in a single, easy-to-use application.
-The app aims to simplify the user’s fitness journey — from finding the right exercises and tracking workouts to managing diet and connecting with personal trainers or nearby gyms.
+GymWare is a comprehensive, all-in-one platform designed to help users improve their health, stay motivated, and reach their fitness goals. It combines exercise planning, progress tracking, and trainer support in a single, easy-to-use application.
+The app aims to simplify the user’s fitness journey — from finding the right exercises and tracking workouts to connecting with personal trainers or nearby gyms.
 
 Core Features:
 * Exercise Catalog
