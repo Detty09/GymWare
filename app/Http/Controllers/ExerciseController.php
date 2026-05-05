@@ -60,10 +60,15 @@ class ExerciseController extends Controller
                 "page" => $page
             ]);
         } catch (\Exception $e) {
-            return view("catalog", [
+            return view("exercise.create", [
+                'plan' => null,
                 "error" => $e->getMessage(),
                 "exercises" => ['data' => []],
-                "page" => $page
+                "bodyparts" => [],
+                "equipments" => [],
+                "selectedBodypart" => null,
+                "selectedEquipment" => null,
+                "page" => $page ?? 1
             ]);
         }
     }
@@ -80,7 +85,7 @@ class ExerciseController extends Controller
         $apiId = $request->input('api-exercise-id');
 
         if ($sets < 1 || empty($sets) || empty($apiId)) {
-            return redirect('/workout-planner/exercise/create/'.$planId)->with('error', 'Something went wrong');
+            return redirect('/workout-planner/exercise/create/' . $planId)->with('error', 'Something went wrong');
         }
 
         $this->exerciseService->createExercise([
@@ -97,5 +102,4 @@ class ExerciseController extends Controller
         $planId = $request->input('plan-id');
         return redirect("/workout-planner/edit/{$planId}");
     }
-
 }

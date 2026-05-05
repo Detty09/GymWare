@@ -13,12 +13,14 @@ class ExerciseDBController extends Controller
     protected $exerciseService;
     protected $filteringService;
 
-    public function __construct(ExerciseDBService $exerciseService, FilteringService $filteringService) {
+    public function __construct(ExerciseDBService $exerciseService, FilteringService $filteringService)
+    {
         $this->exerciseService = $exerciseService;
         $this->filteringService = $filteringService;
     }
 
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         try {
             $page = $request->query("page", 1);
             $bodypart = $request->query("bodypart");
@@ -49,12 +51,17 @@ class ExerciseDBController extends Controller
             return view("catalog", [
                 "error" => $e->getMessage(),
                 "exercises" => ['data' => []],
-                "page" => $page
+                "bodyparts" => [],
+                "equipments" => [],
+                "selectedBodypart" => null,
+                "selectedEquipment" => null,
+                "page" => $page ?? 1
             ]);
         }
     }
 
-    public function show($id, Request $request) {
+    public function show($id, Request $request)
+    {
 
         $page = $request->query("page", 1);
         $bodypart = $request->query("bodypart");
@@ -66,6 +73,5 @@ class ExerciseDBController extends Controller
         $exercise = collect($cachedPage['data'] ?? [])->firstWhere("exerciseId", $id);
 
         return view("exercise-details", ["exercise" => $exercise]);
-
     }
 }

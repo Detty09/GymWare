@@ -13,11 +13,6 @@
             :selected-equipment="$selectedEquipment"
         />
 
-        @if(isset($error))
-            <div class="bg-red-100 text-red-800 p-4 rounded mb-6">
-                {{ $error }}
-            </div>
-        @endif
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             @forelse($exercises['data'] ?? [] as $exercise)

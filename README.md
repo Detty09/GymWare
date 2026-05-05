@@ -185,9 +185,9 @@ Under work!
 ## Contact
 
 * Bernadett Kiss - bernadett@gmail.com
-* Botond Brindza - email@email_client.com
-* Ákos Ilia - email@email_client.com
-* Péter Török - email@email_client.com
+* Botond Brindza 
+* Ákos Ilia 
+* Péter Török 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
